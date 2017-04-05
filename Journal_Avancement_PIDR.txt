@@ -1,0 +1,30 @@
+05/04/2017
+
+Premier test, avec les données non-filtrées :
+
+(Ordonnée à l'origine) b0 = 0.84
+(Coefficient devant l'opinion initiale) b1 = 0.1212
+(Coefficient devant l'opinion à l'instant t=2) b2 = 0.7107
+(Coefficient devant la moyenne des opinion à l'instant t=2) b3 = 0.1724
+
+R² = 0.8867
+F = 23 339
+p = 0
+sigma² = 1286
+sigma = 35.86
+
+Premiers plots :
+
+plot(yi_chapeau,yi_chapeau) -> Valeur regression
+plot(yi_chapeau,yi) -> Nuage de points, centré autour de la valeur prédite
+plot(yi_chapeau,ei) -> Indépendance des ei/ Centrés sur 0 ?
+
+//////////////////////////////////////////////////////////////////////////////Tests à faire la prochaine fois : //////////////////////////////////////////////////////////////////////////
+
+Bootstrap de sorte à obtenir une distribution des différents coefficients b 
+	-> Tracer leur distribution et vérifier si on peut, à l'aide d'un intervalle de confiance, affirmer la leur non nullité
+Estimer la variance/l'écart-type des ei (-> Vérifier si constant ?)
+OU corr(ei,yi_chapeau) -> test de nullité de pe,y_chapeau pe,y
+		       -> test de nullité de pe,x1 pe,x2, pe,x3
+
+-> Pour valider la preuve d'indépendance entre les individus
