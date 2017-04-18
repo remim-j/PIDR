@@ -1,6 +1,6 @@
 % Import des fichiers
-Rp = csvread('Xpers_counting_game_plos_one.csv');
-Mo = csvread('Xmean_counting_game_plos_one.csv');
+Rp = csvread('data_pidr_2017/Xpers_counting_game_plos_one.csv');
+Mo = csvread('data_pidr_2017/Xmean_counting_game_plos_one.csv');
 [x, y] = size(Rp);
 
 %Initialisation de M
@@ -31,8 +31,9 @@ stats(4)
 ypredit = b(1)*X(:,1) + b(2)*X(:,2) + b(3)*X(:,3) + b(4)*X(:,4);
 yreel = y;
 
+%On retire les valeurs nan des listes pour pouvoir faire les plots
 for i=length(y):-1:1
-    if isnan(ypredit(i)) | isnan(yreel)
+    if isnan(ypredit(i)) | isnan(yreel(i))
         yreel(i) = [];
         ypredit(i) = [];
     end
@@ -40,9 +41,47 @@ end
 
 figure(1)
 plot(ypredit, ypredit, ypredit, yreel, '.')
+xlabel('y predit');
+ylabel('y reel');
 figure(2)
 plot(yreel, (yreel-ypredit), '.')
+xlabel('y reel');
+ylabel('erreur');
+
+%% erreur moyenne/écart type
+
+erreur = yreel-ypredit;
+merreur = zeros(20,1);
+mcpt = zeros(20,1);
+for i=1:length(yreel)
+    p = floor(yreel(i)/25)+1;
+    merreur(p) = merreur(p) + erreur(i);
+    mcpt(p) = mcpt(p) + 1;
+end
+
+for i=1:length(merreur)
+    if (mcpt(i) ~= 0)
+        merreur(i) = merreur(i)/mcpt(i);
+    end
+end
+
+mecart = zeros(20,1);
+for i=1:length(yreel)
+    p = floor(yreel(i)/25)+1;
+    mecart(p) = mecart(p) + (erreur(i)-merreur(p))^2;
+end
+mecart
+for i=1:length(mecart)
+    if (mcpt(i) ~= 0)
+        mecart(i) = mecart(i)/mcpt(i);
+    end
+    mecart(i) = sqrt(mecart(i))
+end
+
+figure('Name','Moyenne des erreurs sur une plage de 25')
+plot([1:25:500], merreur,'.',[1:25:500],mecart,'.')
+legend('moyenne erreur','ecart type erreur');
 
 
-%figure('graph')
-%plot(ypredit, ypredit)
+
+
