@@ -1,30 +1,36 @@
 05/04/2017
 
-Premier test, avec les données non-filtrées :
+Premier test, avec les donnÃ©es non-filtrÃ©es :
 
-(Ordonnée à l'origine) b0 = 0.84
+(OrdonnÃ©e Ã  l'origine) b0 = 0.84
 (Coefficient devant l'opinion initiale) b1 = 0.1212
-(Coefficient devant l'opinion à l'instant t=2) b2 = 0.7107
-(Coefficient devant la moyenne des opinion à l'instant t=2) b3 = 0.1724
+(Coefficient devant l'opinion Ã  l'instant t=2) b2 = 0.7107
+(Coefficient devant la moyenne des opinion Ã  l'instant t=2) b3 = 0.1724
 
-R² = 0.8867
+RÂ² = 0.8867
 F = 23 339
 p = 0
-sigma² = 1286
+sigmaÂ² = 1286
 sigma = 35.86
 
 Premiers plots :
 
 plot(yi_chapeau,yi_chapeau) -> Valeur regression
-plot(yi_chapeau,yi) -> Nuage de points, centré autour de la valeur prédite
-plot(yi_chapeau,ei) -> Indépendance des ei/ Centrés sur 0 ?
+plot(yi_chapeau,yi) -> Nuage de points, centrÃ© autour de la valeur prÃ©dite
+plot(yi_chapeau,ei) -> IndÃ©pendance des ei/ CentrÃ©s sur 0 ?
 
-//////////////////////////////////////////////////////////////////////////////Tests à faire la prochaine fois : //////////////////////////////////////////////////////////////////////////
+Avant le 24/04 :
 
-Bootstrap de sorte à obtenir une distribution des différents coefficients b 
-	-> Tracer leur distribution et vérifier si on peut, à l'aide d'un intervalle de confiance, affirmer la leur non nullité
-Estimer la variance/l'écart-type des ei (-> Vérifier si constant ?)
-OU corr(ei,yi_chapeau) -> test de nullité de pe,y_chapeau pe,y
-		       -> test de nullité de pe,x1 pe,x2, pe,x3
+-Ajout du code de gÃ©nÃ©ration du bootstrap sur des plages de 25 valeurs
+-Calcul des moyennes et des Ã©carts-types sur les erreurs
 
--> Pour valider la preuve d'indépendance entre les individus
+/////////////////////////////////////////////// TODO : ///////////////////////////////////////////////////////
+
+-> Tracer la distribution des coeficients b issus du bootstrap.
+-> VÃ©rifier si on peut, Ã  l'aide d'un intervalle de confiance
+-> Affirmer leur non nullitÃ©
+-> VÃ©rifier la constance des Ã©carts-types des erreurs
+-> OU corr(ei,yi_chapeau) -> test de nullitÃ© de pe,y_chapeau pe,y
+		       -> test de nullitÃ© de pe,x1 pe,x2, pe,x3
+
+-> Pour valider la preuve d'indÃ©pendance entre les individus
