@@ -1,6 +1,7 @@
 % Import des fichiers
-Rp = csvread('data_pidr_2017/Xpers_counting_game_plos_one.csv');
-Mo = csvread('data_pidr_2017/Xmean_counting_game_plos_one.csv');
+Rp = csvread('data_pidr_2017/Xpers_gauging_game_plos_one.csv');
+Mo = csvread('data_pidr_2017/Xmean_gauging_game_plos_one.csv');
+max = 100;
 [x, y] = size(Rp);
 
 %Initialisation de M
@@ -53,8 +54,9 @@ ylabel('erreur');
 erreur = yreel-ypredit;
 merreur = zeros(20,1);
 mcpt = zeros(20,1);
+pas = max / 20;
 for i=1:length(yreel)
-    p = floor(yreel(i)/25)+1;
+    p = floor(yreel(i)/pas)+1;
     merreur(p) = merreur(p) + erreur(i);
     mcpt(p) = mcpt(p) + 1;
 end
@@ -67,7 +69,7 @@ end
 
 mecart = zeros(20,1);
 for i=1:length(yreel)
-    p = floor(yreel(i)/25)+1;
+    p = floor(yreel(i)/pas)+1;
     mecart(p) = mecart(p) + (erreur(i)-merreur(p))^2;
 end
 mecart
@@ -79,8 +81,38 @@ for i=1:length(mecart)
 end
 
 figure('Name','Moyenne des erreurs sur une plage de 25')
-plot([1:25:500], merreur,'.',[1:25:500],mecart,'.')
+plot([1:pas:max], merreur,'.',[1:pas:max],mecart,'.', 'MarkerSize', 20)
 legend('moyenne erreur','ecart type erreur');
+
+%% Bootstrap
+disp('Bootstrap');
+
+bboot = zeros(1, 5000);
+for i=1:5000
+    [boot] = bootstrap(M);
+    yb = boot(:,3);
+    Xb = [ ones(size(y)) boot(:, [1 2 4])];
+    [bb,bintb,rb,rintb,statsb] = regress(yb,Xb);
+    bboot(i) = bb(2);
+end
+
+bboot;
+%% Exploitation bootstrap
+    
+histogram(bboot)
+[val, idx] = sort(bboot);
+binf = val(floor(length(bboot)*0.025));
+bsup = val(floor(length(bboot)*0.975));
+
+disp('Interval de confience à 95%')
+binf
+bsup
+
+%Calcul de la p valeur
+pval = sum(abs(bboot-mean(bboot))>=mean(bboot))/length(bboot)
+
+
+
 
 
 

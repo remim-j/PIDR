@@ -1,9 +1,9 @@
-function [M] = bootstrap(S)
+function [R] = bootstrap(S)
 %Génère M à partir de S
-n = length(S)
-M = size(S);
-for i=1:n
-    r = 1 + (n-1) * rand(1);
-    M(i) = S(r);
+n = length(S);
+R = zeros(size(S));
+for i=1:1:n
+    r = floor(1 + (n) * rand(1));
+    R(i,:) = S(r,:);
 end
-M;
+R;
