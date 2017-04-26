@@ -27,6 +27,10 @@ Avant le 24/04 :
 
 /////////////////////////////////////////////// TODO : ///////////////////////////////////////////////////////
 
+26/04 :
+
+Le coeff b devant l'opinion initiale est non-nul (intervalle de confiance à 95%)
+
 -> Tracer la distribution des coeficients b issus du bootstrap.
 -> Vérifier si on peut, à l'aide d'un intervalle de confiance
 -> Affirmer leur non nullité
@@ -35,5 +39,10 @@ Avant le 24/04 :
 
 -> Pour valider la preuve d'indépendance entre les individus
 
+-> Tableau qui récapitule les résultats, avec et sans bootstrap. Si les deux même résultats sont similaire, ne pas l'inclure dans le rapport, mais le mentionner.
+
+
+-> Pour le rapport, décrire la méthodo, bien dans l'ordre...
+-> Voir pour la génération synthétique de données : Il faut voir si le b de l'opinion initaile est nul en générant des données à l'aide de VMG
 
 https://scholar.google.fr
