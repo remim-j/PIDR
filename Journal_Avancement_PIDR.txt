@@ -34,3 +34,6 @@ Avant le 24/04 :
 		       -> test de nullité de pe,x1 pe,x2, pe,x3
 
 -> Pour valider la preuve d'indépendance entre les individus
+
+
+https://scholar.google.fr
