@@ -23,13 +23,13 @@ Avant le 24/04 :
 
 -Ajout du code de génération du bootstrap sur des plages de 25 valeurs
 -Calcul des moyennes et des écarts-types sur les erreurs
+- Vérifier la constance des écarts-types des erreurs
 
 /////////////////////////////////////////////// TODO : ///////////////////////////////////////////////////////
 
 -> Tracer la distribution des coeficients b issus du bootstrap.
 -> Vérifier si on peut, à l'aide d'un intervalle de confiance
 -> Affirmer leur non nullité
--> Vérifier la constance des écarts-types des erreurs
 -> OU corr(ei,yi_chapeau) -> test de nullité de pe,y_chapeau pe,y
 		       -> test de nullité de pe,x1 pe,x2, pe,x3
 
