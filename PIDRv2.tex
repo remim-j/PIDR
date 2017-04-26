@@ -7,10 +7,11 @@
 \usepackage{graphicx} %package pour ajouter les images
 \usepackage{array} % pour les tableaux
 \usepackage[nottoc, notlof, notlot]{tocbibind} %pour afficher la biblio ?
+\usepackage{amsmath}
 \hypersetup{
     bookmarks=false,    % show bookmarks bar?
     pdftitle={Software Requirement Specification},    % title
-    pdfauthor={Jean-Philippe Eisenbarth},                     % author
+    pdfauthor={GUYO MARIE-JEANNE},                     % author
     pdfsubject={TeX and LaTeX},                        % subject of the document
     pdfkeywords={TeX, LaTeX, graphics, images}, % list of keywords
     colorlinks=true,       % false: boxed links; true: colored links
@@ -53,28 +54,28 @@
 
 Les deux articles que nous allons étudier sont “Social influence networks and opinion change”, écrit par Noah E. Friedkin et Eugene C. Johnson \cite{FJ} et “Modelling influence and opinion evolution in online collective behaviour”, de Corentin Vande Kerckhove, Samuel Martin, Pascal Gend, Peter J. Rentfrow, Julien M. Hendrickx et Vincent D. Blondel \cite{VMG}.\\
 
-L’article \cite{FJ} de Friedkin et Johnson porte sur les dynamiques d’opinion. C’est-à-dire la façon dont des individus peuvent modifier leurs opinions lorsqu’ils sont confrontés à un groupe de personne. Plus précisément, il s’interroge sur la possibilité de parvenir à un consensus entre les acteurs. Le document a été écrit en 1999. De nombreuses études avaient déjà été menées depuis 1950, notamment par French ou Ash.\\
+L’article \cite{FJ} de Friedkin et Johnson porte sur les dynamiques d’opinion. C’est-à-dire la façon dont des individus peuvent modifier leurs opinions lorsqu’ils sont confrontés à un groupe de personne. Plus précisément, il s’interroge sur la possibilité de parvenir à un consensus entre les acteurs. Le document a été écrit en 1999. De nombreuses études avaient déjà été menées depuis 1950, notamment par John French, dont on peut citer l'article "A formal theory of social power" de 1956 ou encore Ash.\\
 
 Le second article \cite{VMG}, plus récent, date de 2016. Il reprend le thème des dynamiques d’opinion mais avec une théorie différente de la précédente. L'article évalue la capacité d'un modèle simple à prédire l'évolution de l'opinion.
 
 \section{La théorie présentée}
 
-L’objectif de l'article \cite{FJ} est de parvenir à valider un modèle reliant l’évolution de l’opinion d’un individu en la confrontant à celle d’autres individus. Les participants pouvaient être encouragés, ou non, à parvenir à un consensus. Le modèle proposé relie l’opinion d’une personne $i$ à l’instant $t$ à l’opinion de tous les autres participants à l’instant $t$-1 ainsi qu’à son opinion initiale. On la note $y_i(t)$.\\
+L’objectif de l'article \cite{FJ} est de parvenir à valider un modèle reliant l’évolution de l’opinion d’un individu en la confrontant à celle d’autres individus. Les participants pouvaient être encouragés, ou non, à parvenir à un consensus. Le modèle proposé relie l’opinion d’une personne $i$ à l’instant $t$ à l’opinion de tous les autres participants à l’instant $t$-1 ainsi qu’à son opinion initiale. On la note $y_i(t)$. On a :\\
 
 \begin{equation}
 \label{1}
-y(t) =AWy(t-1)+(I-A)y(1) 
+y(t) =AWy(t-1)+(I-A)y(1), 
 \end{equation}
 
-Avec $y(t)=(y_1(t), y_2(t), ... , y_n(t))^T$ le vecteur de taille $N$ contenant la valeur de l’opinion des $N$ participants à l’instant $t$, $A=diag((a_{ii})_i)$, la matrice diagonale de taille $N\times N$, avec $a_{ii}$ représente le poids que l'individu $i$ accorde à l'opinion des autres participants, $W$ la matrice diagonale $N\times N$, avec $w_{ij}$ l’influence de l’individu $j$ sur l’individu $i$, avec $\sum_{i=1}^{N} w_{ij} = 1$ \\
+avec $y(t)=(y_1(t), y_2(t), ... , y_n(t))^T$ le vecteur de taille $N$ contenant la valeur de l’opinion des $N$ participants à l’instant $t$, $A=diag((a_{ii})_i)$, la matrice diagonale de taille $N\times N$, où $a_{ii}$ représente le poids que l'individu $i$ accorde à l'opinion des autres participants, $W$ la matrice diagonale $N\times N$, avec $w_{ij}$ l’influence de l’individu $j$ sur l’individu $i$, avec $\sum_{i=1}^{N} w_{ij} = 1$. \\
 
  Il est possible de poser :\\
 \begin{equation}
 \label{WC}
- W=AC+I-A
+ W=AC+I-A,
 \end{equation}
 
-C correspond à la matrice $N \times N$ d'influence relative. $c_{ij}$ correspond à l'influence de j sur i. Tous les coefficients diagonaux de C sont nuls et $\sum_{i=1}^{N} c_{ij} = 1$. \\
+où C correspond à la matrice $N \times N$ d'influence relative. Le poids $c_{ij}$ correspond à l'influence de j sur i. Tous les coefficients diagonaux de C sont nuls et $\sum_{i=1}^{N} c_{ij} = 1$. \\
 
 Le modèle proposé dans l'article \cite{VMG} est similaire au précédent. Cependant, l’influence initiale n'intervient plus dans la formule.\\
 
@@ -83,27 +84,27 @@ Le modèle proposé dans l'article \cite{VMG} est similaire au précédent. Cepe
 y(t) =(I-A'(t-1))y(t-1)+A'(t-1)\bar{y}(t-1) 
 \end{equation}
 
-On remarque qu’ici, la matrice $A'$ qui représente l'influençabilité dépend de l’instant auquel on effectue l’expérience. En effet, au bout d'un certain nombre de répétitions, l'opinion de l'individu n'évolue plus, il n'est donc plus affecté par l'opinion des autres et son influençabilité diminue. $\bar{y}(t)$ représente la moyenne des valeurs des opinions à l’instant $t$. On peut aussi écrire la formule \ref{2} sous la forme :
+On remarque qu’ici, la matrice $A'$ qui représente l'influençabilité dépend de l’instant auquel on effectue l’expérience. En effet, au bout d'un certain nombre de répétitions, l'opinion de l'individu n'évolue plus. Il n'est donc plus affecté par l'opinion des autres et son influençabilité diminue. La variable $\bar{y}(t)$ représente la moyenne des valeurs des opinions à l’instant $t$. On peut aussi écrire la formule \eqref{2} sous la forme :
 
 \begin{equation}
 \label{3}
-y(t) =(I-A'(t-1))y(t-1)+A'(t-1)(\frac{1}{n} \textbf{1} ^T\times \textbf{1}) y(t-1)
+y(t) =(I-A'(t-1))y(t-1)+A'(t-1)(\frac{1}{n} \textbf{1} ^T\times \textbf{1}) y(t-1).
 \end{equation}
 
-En identifiant avec la formule \ref{1}, on remarque que $W=(\frac{1}{n} \textbf{1} ^T\times \textbf{1})$. Ainsi, on donne le même poids à chaque autre individu.\\
+En identifiant avec la formule \eqref{1}, on remarque que $W=(\frac{1}{n} \textbf{1} ^T\times \textbf{1})$. Ainsi, on donne le même poids à chaque autre individu.\\
 
 Nous pouvons alors dresser un comparatif des deux modèles dans la Table 1.1.\\
 
 \begin{table}
-	\begin{tabular}{|p{4cm}|p{4.5cm}|p{4.5cm}|}
+	\begin{tabular}{|p{3cm}|p{3.375cm}|p{3.375cm}|p{3.375cm}|}
 		\hline
- & Friedkin et Johnson & VMG \tabularnewline
+ & Friedkin et Johnson \cite{FJ} & Van de Kerckhove et al. \cite{VMG} & Interprétation \tabularnewline
 		\hline
-Coefficient devant l'opinion initiale & $I-A$ & $0$\tabularnewline
+Coefficient devant l'opinion initiale & $I-A$ & $0$ & L'opinion initiale n'est pas prise en compte dans l'article \cite{VMG} \tabularnewline
 		\hline
-Coefficient devant la réponse de l'individu à l'instant précédent & $A(A-I)$ & $(I-A'(t-1))$ \tabularnewline
+Coefficient devant la réponse de l'individu à l'instant précédent & $A(A-I)$ & $(I-A'(t-1))$ & L'influence d'un individu sur un autre ne dépend pas de l'individu \tabularnewline
 		\hline
-Coefficient devant l'opinion du groupe à l'instant précédent & $A^{2}C$ & $A'(t-1)(\frac{1}{n} \textbf{1} ^T\times \textbf{1})$\tabularnewline
+Coefficient devant l'opinion du groupe à l'instant précédent & $A^{2}C$ & $A'(t-1)(\frac{1}{n} \textbf{1} ^T\times \textbf{1})$ & Dans l'article \cite{VMG}, la même influence est attribuée à chaque participant sur l'individu \tabularnewline
 		\hline
 	\end{tabular}
 	\caption{Comparaison des 2 modèles}
@@ -115,16 +116,16 @@ Coefficient devant l'opinion du groupe à l'instant précédent & $A^{2}C$ & $A'
 
 Les deux articles étudiés présentent chacun une expérience cherchant à montrer la validité de leur modèle.\\
 
-Dans l’article de Friedkin et Johnson, l’expérience consistait à former des groupes de deux à quatre personnes. Un total de 368 personnes a participé. Une question était posée à chaque groupe, par exemple : \textit{À combien estimez-vous le salaire horaire des travailleurs non-diplômés  travaillant sur un site de désamiantage ?}. Les individus donnaient chacun un résultat. S’ensuivait une conversation téléphonique avec d’autres participants. Ils pouvaient alors donner une nouvelle réponse. L’opération se répétait jusqu’à ce que la situation n’évolue plus et tous les résultats intermédiaires sont conservés. Il est ensuite demandé aux différents participants d’estimer à quel point ils pesent avoir été influencés par les autres. Pour ce faire, ils devaient répartir une pile de jetons de poker.\\
+Dans l’article de Friedkin et Johnson \cite{FJ}, l’expérience consistait à former des groupes de deux à quatre personnes. Un total de 368 personnes a participé. Une question était posée à chaque groupe, par exemple : \textit{À combien estimez-vous le salaire horaire des travailleurs non-diplômés  travaillant sur un site de désamiantage ?}. Les individus donnaient chacun un résultat. S’ensuivait une conversation téléphonique avec d’autres participants. Ils pouvaient alors donner une nouvelle réponse. L’opération se répétait jusqu’à ce que la situation n’évolue plus et tous les résultats intermédiaires sont conservés. Il est ensuite demandé aux différents participants d’estimer à quel point ils pensent avoir été influencés par les autres. Pour ce faire, ils devaient répartir une pile de jetons de poker.\\
 
-Dans le cas de l’article de VMG, une plateforme de crowdsourcing a été utilisée afin de recruter 861 sujets. Un groupe était formé de six personnes ou moins. Deux jeux leurs étaient proposés. Le premier consistait à évaluer le nombre de points dans une image. Le second à évaluer la proportion d'une couleur dans une image. Le jeu était divisé en trois phases. Par exemple, pour le premier jeu, lors de la première phase, l'individu devait évaluer, seul, le nombre de points présents sur chacune des 30 images. Lors de la seconde phase, il avait accès aux résultats des cinq autres participants, et pouvait modifier ses réponses en conséquence. La troisième phase correspond à une répétition de la deuxième phase. Les estimations alors présentées sont celles de la deuxième phase. \\
+Dans le cas de l’article \cite{VMG}, une plateforme de crowdsourcing a été utilisée afin de recruter 861 sujets. Un groupe était formé de six personnes ou moins. Deux jeux leurs étaient proposés. Le premier consistait à évaluer le nombre de points dans une image. Le second à évaluer la proportion d'une couleur dans une image. Le jeu était divisé en trois phases. Par exemple, pour le premier jeu, lors de la première phase, l'individu devait évaluer, seul, le nombre de points présents sur chacune des 30 images. Lors de la seconde phase, il avait accès aux estimations des cinq autres participants, et pouvait modifier ses réponses en conséquence. La troisième phase correspond à une répétition de la deuxième phase. Les estimations alors présentées sont celles de la deuxième phase. \\
 
 Bien que ces expériences présentent des similitudes, elles possèdent des différences notables résumées dans la Table 1.2.\\
 
 \begin{table}
 	\begin{tabular}{|p{4cm}|p{4.5cm}|p{4.5cm}|}
 		\hline
- & Friedkin et Johnson & VMG \tabularnewline
+ & Friedkin et Johnson \cite{FJ} & Vande Kerckhove \cite{VMG} \tabularnewline
 		\hline
 Consigne & Il est suggéré (plus ou moins fortement) aux participants de trouver un accord. &Il est demandé aux participants de trouver la bonne réponse ou de s’en approcher le plus possible\tabularnewline
 		\hline
@@ -138,11 +139,13 @@ Topologie des interactions & Plusieurs type de topologie, complètes ou non. & G
 	\caption{Comparaison des 2 expériences}
 \end{table}
 
-On voit ici qu'une des différences entre les deux protocoles est la nature des interactions entre les participants. En effet, il n’y a pas de “bonne” réponse aux questions posées dans l'expérience de Friedkin et Johnson, et les participants sont en contact vocal, ce qui peut provoquer, par exemple, l’émergence de leaders qui vont imposer leurs choix aux autres. L’absence de contact direct entre les participants, ainsi que l’existence d’une réponse correcte à atteindre chez VMG limite ce phénomène.\\
+On voit ici qu'une des différences entre les deux protocoles est la nature des interactions entre les participants. En effet, il n’y a pas de “bonne” réponse aux questions posées dans l'expérience de Friedkin et Johnson, et les participants sont en contact vocal, ce qui peut provoquer, par exemple, l’émergence de leaders qui vont imposer leurs choix aux autres. L’absence de contact direct entre les participants, ainsi que l’existence d’une réponse correcte à atteindre dans l'article \cite{VMG} limite ce phénomène.\\
 
-\subsection{Exploitation des résultats}
+\subsection{Identification du modèle}
 
-Dans le cas de Friedkin et Johnson, les valeurs $y(t)$ correspondent aux résultats fournis par les participants à un instant $t$. Après l'expérience, ils cherchent à évaluer les matrices $A$ et $C$. \\ % $W$. Il est tout d'abord possible de poser :\\
+\subsubsection{Méthode}
+
+Dans le cas de Friedkin et Johnson, les valeurs $y(t)$ correspondent aux résultats fournis par les participants à un instant $t$. Après l'expérience, ils cherchent à évaluer les matrices $A$ et $C$ de l'équation \eqref{WC}. \\ % $W$. Il est tout d'abord possible de poser :\\
 
 %\begin{equation}
 %\label{WC}
@@ -151,9 +154,11 @@ Dans le cas de Friedkin et Johnson, les valeurs $y(t)$ correspondent aux résult
 
 %C correspond à la matrice $N \times N$ d'influence relative. $c_{ij}$ correspond à l'influence de j sur i. Tous les coefficients diagonaux de C sont nuls et $\sum_{i=1}^{N} c_{ij} = 1$. \\
 
-A la fin de l'expérience, une pile de 20 jetons était distribuée à chaque participant. Il devait dans un premier temps séparer la pile en 2 tas. L'un représentait la part de son opinion dans le résultat, et la seconde, la part de l'opinion des autres participants. A partir de cette répartition, il est possible de déterminer une matrice $S$, diagonale. $s_{ii} = \frac{nombre\_de\_jetons\_de\_sa\_pile}{nombre\_de\_jetons\_total}$ et correspond à une estimation de sa part d'influence propre dans sa réponse. Ces résultats ne sont pas utilisés directement puisque les participants ne sont pas considérés capable d'estimer avec justesse la part accordée à leur propre opinion. Afin de déterminer $A$, une régression linéaire est effectuée. Les auteurs restent cependant flous au sujet des séries de données utilisées our celle-ci.\\
+À la fin de l'expérience, une pile de 20 jetons était distribuée à chaque participant. Il devait dans un premier temps séparer la pile en 2 tas. L'un représentait la part de son opinion dans le résultat, et la seconde, la part de l'opinion des autres participants. À partir de cette répartition, il est possible de déterminer une matrice $S = diag$. Le coefficient $s_{ii} = \frac{nombre\_de\_jetons\_de\_sa\_pile}{nombre\_de\_jetons\_total}$ correspond à une estimation de sa part d'influence propre dans sa réponse. Ces résultats ne sont pas utilisés directement puisque les participants ne sont pas considérés capable d'estimer avec justesse la part accordée à leur propre opinion. Afin de déterminer $A$, une régression linéaire est effectuée. Les auteurs restent cependant flous au sujet des séries de données utilisées our celle-ci.\\
 
 Dans un second temps, les participants devaient répartir la seconde pile entre les autres sujets. Il est alors possible de déterminer C. Le poids accordé par l'individu $i$ à l'individu $j$ correspond au rapport entre le nombre de jetons distribués à cet individu et le nombre total de jetons distribués.\\
+
+\subsubsection{Résultats}
 
 Il est alors possible, grâce à $A$ et $C$ de déduire $W$ et de prédire les résultats à partir de la formule théorique (1). Une régression linéaire est ensuite effectuée avec les résultats réellement obtenus. Les auteurs obtiennent une corrélation très proche de 1.
   
@@ -162,7 +167,7 @@ Il est alors possible, grâce à $A$ et $C$ de déduire $W$ et de prédire les r
 
 Aux vu des résultats de Friedkin et Johnson, il est possible de se demander comment des coefficients si proches de 1 ont pu être obtenus. Nous allons essayer d'expliquer comment ils sont parvenus à de tels résultats.\\
 
-Tout d’abord, à partir du modèle \ref{1} proposé initialement, il est possible de déduire l'opinion finale des participants à partir de leur réponse initiale.\\
+Tout d’abord, à partir du modèle \eqref{1} proposé initialement, il est possible de déduire l'opinion finale des participants à partir de leur réponse initiale.\\
 
 \begin{equation}
 \label{4}
@@ -171,13 +176,13 @@ y(\infty) =(I-AW)^{-1}(I-A)y(1)
 
 Il faut donc déterminer $A$ et $W$.\\
 
-Or, selon \ref{WC}, on peux exprimer $W$ en fonction de $A$ et de $C$ , avec $C$ la matrice d’influence relative. Nous avons vu que dans l'exprience, la matrice $C$ était obtenue grâce aux jetons. Cependant, la matrice $A$ n'est pas obtenue directement. Elle est déduite grâce à une régression linéaire de type $a_{ii} = \alpha + \beta s_{ii}$\\
+Or, selon \eqref{WC}, on peux exprimer $W$ en fonction de $A$ et de $C$ , avec $C$ la matrice d’influence relative. Nous avons vu que dans l'exprience, la matrice $C$ était obtenue grâce aux jetons. Cependant, la matrice $A$ n'est pas obtenue directement. Elle est déduite grâce à une régression linéaire de type $a_{ii} = \alpha + \beta s_{ii}$\\
 
 Néanmoins, rien n’explique dans l’article comment les coefficients $a_{ii}$ ont été obtenus.\\
 
 On peut donc supposer que ces coefficients ont été choisis de façon à minimiser l'écart entre les valeurs prédites et observées. De plus, dans l'article, un couple $\alpha$ $\beta$ est utilisé pour chaque question différente, ce qui permet d'améliorer les résultats.\\
 
-Il est possible de se demander si les coefficients de $A$ n'ont pas été déterminés à partir des résultats de l'expérience. En effet, si on prend \ref{1} à l’instant $t=2$ et on remplace $W$ à l’aide de \ref{WC} :\\
+Il est possible de se demander si les coefficients de $A$ n'ont pas été déterminés à partir des résultats de l'expérience. En effet, si on prend \eqref{1} à l’instant $t=2$ et on remplace $W$ à l’aide de \eqref{WC} :\\
 
 \begin{equation}
 \label{5}
