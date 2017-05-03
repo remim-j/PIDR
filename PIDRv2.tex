@@ -54,7 +54,7 @@
 
 Les deux articles que nous allons étudier sont “Social influence networks and opinion change”, écrit par Noah E. Friedkin et Eugene C. Johnson \cite{FJ} et “Modelling influence and opinion evolution in online collective behaviour”, de Corentin Vande Kerckhove, Samuel Martin, Pascal Gend, Peter J. Rentfrow, Julien M. Hendrickx et Vincent D. Blondel \cite{VMG}.\\
 
-L’article \cite{FJ} de Friedkin et Johnson porte sur les dynamiques d’opinion. C’est-à-dire la façon dont des individus peuvent modifier leurs opinions lorsqu’ils sont confrontés à un groupe de personne. Plus précisément, il s’interroge sur la possibilité de parvenir à un consensus entre les acteurs. Le document a été écrit en 1999. De nombreuses études avaient déjà été menées depuis 1950, notamment par John French, dont on peut citer l'article "A formal theory of social power" de 1956 ou encore Ash.\\
+L’article \cite{FJ} de Friedkin et Johnson porte sur les dynamiques d’opinion. C’est-à-dire la façon dont des individus peuvent modifier leurs opinions lorsqu’ils sont confrontés à un groupe de personne. Plus précisément, il s’interroge sur la possibilité de parvenir à un consensus entre les acteurs. Le document a été écrit en 1999. De nombreuses études avaient déjà été menées depuis 1950, notamment par John French, dont on peut citer l'article "A formal theory of social power" \cite{French} de 1956 ou encore Ash, à qui l'on doit "" \cite{Ash}.\\
 
 Le second article \cite{VMG}, plus récent, date de 2016. Il reprend le thème des dynamiques d’opinion mais avec une théorie différente de la précédente. L'article évalue la capacité d'un modèle simple à prédire l'évolution de l'opinion.
 
@@ -84,7 +84,7 @@ Le modèle proposé dans l'article \cite{VMG} est similaire au précédent. Cepe
 y(t) =(I-A'(t-1))y(t-1)+A'(t-1)\bar{y}(t-1) 
 \end{equation}
 
-On remarque qu’ici, la matrice $A'$ qui représente l'influençabilité dépend de l’instant auquel on effectue l’expérience. En effet, au bout d'un certain nombre de répétitions, l'opinion de l'individu n'évolue plus. Il n'est donc plus affecté par l'opinion des autres et son influençabilité diminue. La variable $\bar{y}(t)$ représente la moyenne des valeurs des opinions à l’instant $t$. On peut aussi écrire la formule \eqref{2} sous la forme :
+On remarque qu’ici, la matrice $A' = diag(a_{ii})$ qui représente l'influençabilité dépend de l’instant auquel on effectue l’expérience. En effet, au bout d'un certain nombre de répétitions, l'opinion de l'individu n'évolue plus. Il n'est donc plus affecté par l'opinion des autres et son influençabilité diminue. La variable $\bar{y}(t)$ représente la moyenne des valeurs des opinions à l’instant $t$. On peut aussi écrire la formule \eqref{2} sous la forme :
 
 \begin{equation}
 \label{3}
@@ -154,7 +154,7 @@ Dans le cas de Friedkin et Johnson, les valeurs $y(t)$ correspondent aux résult
 
 %C correspond à la matrice $N \times N$ d'influence relative. $c_{ij}$ correspond à l'influence de j sur i. Tous les coefficients diagonaux de C sont nuls et $\sum_{i=1}^{N} c_{ij} = 1$. \\
 
-À la fin de l'expérience, une pile de 20 jetons était distribuée à chaque participant. Il devait dans un premier temps séparer la pile en 2 tas. L'un représentait la part de son opinion dans le résultat, et la seconde, la part de l'opinion des autres participants. À partir de cette répartition, il est possible de déterminer une matrice $S = diag$. Le coefficient $s_{ii} = \frac{nombre\_de\_jetons\_de\_sa\_pile}{nombre\_de\_jetons\_total}$ correspond à une estimation de sa part d'influence propre dans sa réponse. Ces résultats ne sont pas utilisés directement puisque les participants ne sont pas considérés capable d'estimer avec justesse la part accordée à leur propre opinion. Afin de déterminer $A$, une régression linéaire est effectuée. Les auteurs restent cependant flous au sujet des séries de données utilisées our celle-ci.\\
+À la fin de l'expérience, une pile de 20 jetons était distribuée à chaque participant. Il devait dans un premier temps séparer la pile en 2 tas. L'un représentait la part de son opinion dans le résultat, et la seconde, la part de l'opinion des autres participants. À partir de cette répartition, il est possible de déterminer une matrice $S = diag(s_{ii})$. Le coefficient $s_{ii} = \frac{nombre\_de\_jetons\_de\_sa\_pile}{nombre\_de\_jetons\_total}$ correspond à une estimation de sa part d'influence propre dans sa réponse finale. Ces résultats ne sont pas utilisés directement puisque les participants ne sont pas considérés capables d'estimer avec justesse la part accordée à leur propre opinion. Afin de déterminer $A$, une régression linéaire est effectuée. Les auteurs restent cependant flous au sujet des séries de données utilisées pour celle-ci.\\
 
 Dans un second temps, les participants devaient répartir la seconde pile entre les autres sujets. Il est alors possible de déterminer C. Le poids accordé par l'individu $i$ à l'individu $j$ correspond au rapport entre le nombre de jetons distribués à cet individu et le nombre total de jetons distribués.\\
 
@@ -165,39 +165,37 @@ Il est alors possible, grâce à $A$ et $C$ de déduire $W$ et de prédire les r
 
 \subsection{Limites des résultats}
 
-Aux vu des résultats de Friedkin et Johnson, il est possible de se demander comment des coefficients si proches de 1 ont pu être obtenus. Nous allons essayer d'expliquer comment ils sont parvenus à de tels résultats.\\
+Au vu des résultats de Friedkin et Johnson \cite{FJ}, il est possible de se demander comment des coefficients si proches de 1 ont pu être obtenus. Nous allons essayer d'expliquer comment ils sont parvenus à de tels résultats.\\
 
-Tout d’abord, à partir du modèle \eqref{1} proposé initialement, il est possible de déduire l'opinion finale des participants à partir de leur réponse initiale.\\
+Tout d’abord, à partir du modèle \eqref{1} proposé initialement, il est possible de déduire l'opinion finale des participants à partir de leur réponse initiale :\\
 
 \begin{equation}
 \label{4}
-y(\infty) =(I-AW)^{-1}(I-A)y(1)
+y(\infty) =(I-AW)^{-1}(I-A)y(1).
 \end{equation}
 
 Il faut donc déterminer $A$ et $W$.\\
 
-Or, selon \eqref{WC}, on peux exprimer $W$ en fonction de $A$ et de $C$ , avec $C$ la matrice d’influence relative. Nous avons vu que dans l'exprience, la matrice $C$ était obtenue grâce aux jetons. Cependant, la matrice $A$ n'est pas obtenue directement. Elle est déduite grâce à une régression linéaire de type $a_{ii} = \alpha + \beta s_{ii}$\\
+Or, selon \eqref{WC}, on peux exprimer $W$ en fonction de $A$ et de $C$ , avec $C$ la matrice d’influence relative. Nous avons vu que dans l'exprience, la matrice $C$ était obtenue grâce aux jetons. Cependant, la matrice $A$ n'est pas obtenue directement. Elle est déduite grâce à une régression linéaire de type $a_{ii} = \alpha + \beta s_{ii}$.\\
 
 Néanmoins, rien n’explique dans l’article comment les coefficients $a_{ii}$ ont été obtenus.\\
 
-On peut donc supposer que ces coefficients ont été choisis de façon à minimiser l'écart entre les valeurs prédites et observées. De plus, dans l'article, un couple $\alpha$ $\beta$ est utilisé pour chaque question différente, ce qui permet d'améliorer les résultats.\\
+On peut donc supposer que ces coefficients ont été choisis de façon à minimiser l'écart entre les valeurs prédites et observées. De plus, dans l'article, un couple $(\alpha$, $\beta$) est utilisé pour chaque question différente, ce qui permet d'améliorer les résultats.\\
 
 Il est possible de se demander si les coefficients de $A$ n'ont pas été déterminés à partir des résultats de l'expérience. En effet, si on prend \eqref{1} à l’instant $t=2$ et on remplace $W$ à l’aide de \eqref{WC} :\\
 
-\begin{equation}
-\label{5}
-y(2) =A(AC+I-A)y(1)+(I-A)y(1)
-\end{equation}
-\begin{equation}
-\label{6}
-y(2) =(A^{2}C+A-A^{2}-I+A)y(1)
-\end{equation}
+\begin{align}
+y(2) & = & A(AC+I-A)y(1)+(I-A)y(1), \\ 
+& = & (A^{2}C+A-A^{2}-I+A)y(1).
+\end{align}
 
-Il est alors possible de déduire $A$ à partir des deux premières valeurs de l'opinion de chaque individu. Si $A$ a bien été obtenue de cette manière, cela peut en partie expliquer la forte corrélation entre les résultats expérimentaux et le modèle proposé par Friedkin et Johnson.\\
+Il est alors possible de déduire $A$ à partir des deux premières valeurs de l'opinion de chaque individu. Si $A$ a bien été obtenue de cette manière, cela peut en partie expliquer la forte corrélation entre les résultats expérimentaux et le modèle proposé par Friedkin et Johnson dans l'article \cite{FJ}.\\
 
 L'article ne fait pas non plus mention d'une validation croisée pour déterminer la validité des coefficients déterminés.\\
 
 Il n'est donc pas possible de complètement valider leur modèle.\\
+
+Pour ce qui est de l'atricle \cite{VMG}, on peut reprocher au modèle que, contrairement à l'article de Friedkin et Johnson \cite{FJ}, l'opinion initiale de l'individu ne soit pas prise en compte dans le modèle.
 
 \section{Problématique}
 
@@ -207,7 +205,10 @@ De plus, nous disposons d’un autre modèle, le modèle VMG, dont une des diff�
 
 Enfin, il est possible de d’essayer de valider le modèle de Friedkin et Johnson en considérant les données obtenues par l’expérience de VMG.\\% C'est ce que nous allons tenter de réaliser dans la suite de ce rapport.\\
 
-Voici les prochaines étapes que nous allons réaliser :
+Dans ce but, nous allons effectuer un certain nombre de traitements sur les données à notre disposition. \\
+
+Nous allons dans un premier temps effectuer une régression linéaire multiple sur les jeux de données fournis, après avoir vérifié toutes les hypothèses nous permettant de l'effectuer. \\
+
 
 \begin{itemize}
 \item Régression linéaire multiple
