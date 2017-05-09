@@ -54,7 +54,7 @@
 
 Les deux articles que nous allons étudier sont “Social influence networks and opinion change”, écrit par Noah E. Friedkin et Eugene C. Johnson \cite{FJ} et “Modelling influence and opinion evolution in online collective behaviour”, de Corentin Vande Kerckhove, Samuel Martin, Pascal Gend, Peter J. Rentfrow, Julien M. Hendrickx et Vincent D. Blondel \cite{VMG}.\\
 
-L’article \cite{FJ} de Friedkin et Johnson porte sur les dynamiques d’opinion. C’est-à-dire la façon dont des individus peuvent modifier leurs opinions lorsqu’ils sont confrontés à un groupe de personne. Plus précisément, il s’interroge sur la possibilité de parvenir à un consensus entre les acteurs. Le document a été écrit en 1999. De nombreuses études avaient déjà été menées depuis 1950, notamment par John French, dont on peut citer l'article "A formal theory of social power" \cite{French} de 1956 ou encore Solomon E. Asch, à qui l'on doit "Effect of group pressure upon the modification and distorsion of judgements" \cite{Asch}.\\
+L’article \cite{FJ} de Friedkin et Johnson porte sur les dynamiques d’opinion. C’est-à-dire la façon dont des individus peuvent modifier leurs opinions lorsqu’ils sont confrontés à un groupe de personne. Plus précisément, il s’interroge sur la possibilité de parvenir à un consensus entre les acteurs. Le document a été écrit en 1999. De nombreuses études avaient déjà été menées depuis 1950, notamment par John French, dont on peut citer l'article "A formal theory of social power" \cite{French} de 1956 ou encore Ash, à qui l'on doit "" \cite{Ash}.\\
 
 Le second article \cite{VMG}, plus récent, date de 2016. Il reprend le thème des dynamiques d’opinion mais avec une théorie différente de la précédente. L'article évalue la capacité d'un modèle simple à prédire l'évolution de l'opinion.
 
@@ -125,7 +125,7 @@ Bien que ces expériences présentent des similitudes, elles possèdent des diff
 \begin{table}
 	\begin{tabular}{|p{4cm}|p{4.5cm}|p{4.5cm}|}
 		\hline
- & Friedkin et Johnson \cite{FJ} & Vande Kerckhove \cite{VMG} \tabularnewline
+ & Friedkin et Johnson \cite{FJ} & Vande Kerckhove et al. \cite{VMG} \tabularnewline
 		\hline
 Consigne & Il est suggéré (plus ou moins fortement) aux participants de trouver un accord. &Il est demandé aux participants de trouver la bonne réponse ou de s’en approcher le plus possible\tabularnewline
 		\hline
@@ -176,7 +176,7 @@ y(\infty) =(I-AW)^{-1}(I-A)y(1).
 
 Il faut donc déterminer $A$ et $W$.\\
 
-Or, selon \eqref{WC}, on peux exprimer $W$ en fonction de $A$ et de $C$ , avec $C$ la matrice d’influence relative. Nous avons vu que dans l'exprience, la matrice $C$ était obtenue grâce aux jetons. Cependant, la matrice $A$ n'est pas obtenue directement. Elle est déduite grâce à une régression linéaire de type $a_{ii} = \alpha + \beta s_{ii}$.\\
+Or, selon \eqref{WC}, on peut exprimer $W$ en fonction de $A$ et de $C$ , avec $C$ la matrice d’influence relative. Nous avons vu que dans l'exprience, la matrice $C$ était obtenue grâce aux jetons. Cependant, la matrice $A$ n'est pas obtenue directement. Elle est déduite grâce à une régression linéaire de type $a_{ii} = \alpha + \beta s_{ii}$.\\
 
 Néanmoins, rien n’explique dans l’article comment les coefficients $a_{ii}$ ont été obtenus.\\
 
@@ -209,14 +209,46 @@ Dans ce but, nous allons effectuer un certain nombre de traitements sur les donn
 
 Nous allons dans un premier temps effectuer une régression linéaire multiple sur les jeux de données fournis, après avoir vérifié toutes les hypothèses nous permettant de l'effectuer. \\
 
+\chapter{Méthode mise en oeuvre}
 
-\begin{itemize}
-\item Régression linéaire multiple
-\item Test de régression linéaire sur les données
-\item Génération synthétique de données pour les deux modèles
-\item Test de régression linéaire sur les données synthétiques
-\item Etude des comportements des deux modèles synthétiques
-\end{itemize}
+\section{Présentation des articles}
+
+Afin de tester la validité du modèle de Friedkin et Johnson \cite{FJ}, nous allons utiliser les données obtenues grâce à l’expérience menée par Van de Kerckhove et al. \cite{VMG}. Nous utiliserons dans un premier temps les résultats obtenus lors du jeu de comptage, puis ceux obtenus dans le jeu d’évaluation des couleurs.\\
+
+On rappelle que selon le modèle de Friedkin et johnson, nous avons \cite{FJ} :\\
+
+\begin{equation}
+\label{1}
+y(t) =AWy(t-1)+(I-A)y(1).
+\end{equation}
+
+En considérant uniquement cette formule au rang $t = 2$, nous obtenons :\\
+\begin{equation}
+\label{1}
+y(2) =AWy(1)+(I-A)y(1), 
+\end{equation}
+
+qui peut aussi s’écrire de la forme :\\
+\begin{equation}
+\label{2}
+mettreFormuleRegLineaireIci,
+\end{equation}
+
+Grâce à l’expérience menée par Van de Kerckhove et al. \cite{VMG}, nous connaissons $y(0)$, $y(1)$ et $y(2)$. Ces trois valeurs sont les réponses données par les sujets durant les trois tours du jeu. Nous n’avons pas ajouté de filtre supplémentaire aux données que nous utilisons. Nous pouvons alors faire une régression linéaire multiple afin de déterminer les valeurs de $\alpha$ et de $\beta$. Nous cherchons à savoir si le paramètre [?] est nul.\\
+
+\section{Etude des erreurs}
+
+Afin de vérifier les hypothèses de la régression linéaire, il nous faut vérifier homoscédasticité des erreurs. Nous allons donc dans un premier temps calculer l’erreur commise à partir de la valeur de $y_{theorique} – y_{reel}$. Nous déterminons ensuite la moyenne et la variance de ces erreurs que nous calculons sur des plages de valeurs.\\
+
+Le but est de vérifier si ces erreurs sont de variance constante.\\
+
+\section{Bootstrap}
+
+Afin de déterminer si le paramètre [?] est significatif, nous allons utiliser la méthode du bootstrap. Cette méthode consiste à générer une nouvelle série de données par tirage uniforme dans la liste initiale. À partir de cette nouvelle liste, il est possible de recalculer de nouvelles valeurs pour les coefficients.\\
+
+Il est alors possible de déterminer un seuil de confiance pour le coefficient ?. Si $0$ se ne se trouve pas dans ce seuil, nous pouvons considérer à $95\%$ que le paramètre est non nul. 
+Nous pouvons ensuite déterminer la $p$-valeur afin de vérifier la validité de notre modèle.
+
 
 
 \bibliographystyle{plain}
