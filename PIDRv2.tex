@@ -54,7 +54,7 @@
 
 Les deux articles que nous allons étudier sont “Social influence networks and opinion change”, écrit par Noah E. Friedkin et Eugene C. Johnson \cite{FJ} et “Modelling influence and opinion evolution in online collective behaviour”, de Corentin Vande Kerckhove, Samuel Martin, Pascal Gend, Peter J. Rentfrow, Julien M. Hendrickx et Vincent D. Blondel \cite{VMG}.\\
 
-L’article \cite{FJ} de Friedkin et Johnson porte sur les dynamiques d’opinion. C’est-à-dire la façon dont des individus peuvent modifier leurs opinions lorsqu’ils sont confrontés à un groupe de personne. Plus précisément, il s’interroge sur la possibilité de parvenir à un consensus entre les acteurs. Le document a été écrit en 1999. De nombreuses études avaient déjà été menées depuis 1950, notamment par John French, dont on peut citer l'article "A formal theory of social power" \cite{French} de 1956 ou encore Ash, à qui l'on doit "" \cite{Ash}.\\
+L’article \cite{FJ} de Friedkin et Johnson porte sur les dynamiques d’opinion. C’est-à-dire la façon dont des individus peuvent modifier leurs opinions lorsqu’ils sont confrontés à un groupe de personne. Plus précisément, il s’interroge sur la possibilité de parvenir à un consensus entre les acteurs. Le document a été écrit en 1999. De nombreuses études avaient déjà été menées depuis 1950, notamment par John French, dont on peut citer l'article "A formal theory of social power" \cite{French} de 1956 ou encore Ash, à qui l'on doit "Effects of group pressure upon the modification and distortion of judgments" \cite{Asch}.\\
 
 Le second article \cite{VMG}, plus récent, date de 2016. Il reprend le thème des dynamiques d’opinion mais avec une théorie différente de la précédente. L'article évalue la capacité d'un modèle simple à prédire l'évolution de l'opinion.
 
@@ -102,7 +102,7 @@ Nous pouvons alors dresser un comparatif des deux modèles dans la Table 1.1.\\
 		\hline
 Coefficient devant l'opinion initiale & $I-A$ & $0$ & L'opinion initiale n'est pas prise en compte dans l'article \cite{VMG} \tabularnewline
 		\hline
-Coefficient devant la réponse de l'individu à l'instant précédent & $A(A-I)$ & $(I-A'(t-1))$ & L'influence d'un individu sur un autre ne dépend pas de l'individu \tabularnewline
+Coefficient devant la réponse de l'individu à l'instant précédent & $A(A-I)$ & $(I-A'(t-1))$ & Dans le modèle  \cite{VMG}, Le poids donné à sa propre opinion varie au bout du temps \tabularnewline
 		\hline
 Coefficient devant l'opinion du groupe à l'instant précédent & $A^{2}C$ & $A'(t-1)(\frac{1}{n} \textbf{1} ^T\times \textbf{1})$ & Dans l'article \cite{VMG}, la même influence est attribuée à chaque participant sur l'individu \tabularnewline
 		\hline
@@ -111,6 +111,7 @@ Coefficient devant l'opinion du groupe à l'instant précédent & $A^{2}C$ & $A'
 \end{table}
 
 \section{Expériences et méthode mises en oeuvre}
+
 
 \subsection{Description de l'expérience}
 
@@ -143,7 +144,9 @@ On voit ici qu'une des différences entre les deux protocoles est la nature des 
 
 \subsection{Identification du modèle}
 
-\subsubsection{Méthode}
+\subsubsection{Dans le cas de l'article \cite{FJ}}
+
+\textbf{Méthode :} \\
 
 Dans le cas de Friedkin et Johnson, les valeurs $y(t)$ correspondent aux résultats fournis par les participants à un instant $t$. Après l'expérience, ils cherchent à évaluer les matrices $A$ et $C$ de l'équation \eqref{WC}. \\ % $W$. Il est tout d'abord possible de poser :\\
 
@@ -158,10 +161,15 @@ Dans le cas de Friedkin et Johnson, les valeurs $y(t)$ correspondent aux résult
 
 Dans un second temps, les participants devaient répartir la seconde pile entre les autres sujets. Il est alors possible de déterminer C. Le poids accordé par l'individu $i$ à l'individu $j$ correspond au rapport entre le nombre de jetons distribués à cet individu et le nombre total de jetons distribués.\\
 
-\subsubsection{Résultats}
+\textbf{Résultats:}\\
 
 Il est alors possible, grâce à $A$ et $C$ de déduire $W$ et de prédire les résultats à partir de la formule théorique (1). Une régression linéaire est ensuite effectuée avec les résultats réellement obtenus. Les auteurs obtiennent une corrélation très proche de 1.
-  
+ 
+\subsubsection{Dans le cas de l'article \cite{VMG}}
+
+\textbf{Méthode :} \\
+
+\textbf{Résultats :} \\
 
 \subsection{Limites des résultats}
 
@@ -215,26 +223,26 @@ Nous allons dans un premier temps effectuer une régression linéaire multiple s
 
 Afin de tester la validité du modèle de Friedkin et Johnson \cite{FJ}, nous allons utiliser les données obtenues grâce à l’expérience menée par Van de Kerckhove et al. \cite{VMG}. Nous utiliserons dans un premier temps les résultats obtenus lors du jeu de comptage, puis ceux obtenus dans le jeu d’évaluation des couleurs.\\
 
-On rappelle que selon le modèle de Friedkin et johnson, nous avons \cite{FJ} :\\
+Selon le modèle de Friedkin et Johnson, nous avons \cite{FJ} :\\
 
 \begin{equation}
 \label{1}
-y(t) =AWy(t-1)+(I-A)y(1).
+y(t) =AWy(t-1)+(I-A)y(1)
 \end{equation}
 
 En considérant uniquement cette formule au rang $t = 2$, nous obtenons :\\
 \begin{equation}
 \label{1}
-y(2) =AWy(1)+(I-A)y(1), 
+y(2) =AWy(1)+(I-A)y(0)
 \end{equation}
 
 qui peut aussi s’écrire de la forme :\\
 \begin{equation}
 \label{2}
-mettreFormuleRegLineaireIci,
+y(2) = \alpha y(1) + \beta y(0) + e
 \end{equation}
 
-Grâce à l’expérience menée par Van de Kerckhove et al. \cite{VMG}, nous connaissons $y(0)$, $y(1)$ et $y(2)$. Ces trois valeurs sont les réponses données par les sujets durant les trois tours du jeu. Nous n’avons pas ajouté de filtre supplémentaire aux données que nous utilisons. Nous pouvons alors faire une régression linéaire multiple afin de déterminer les valeurs de $\alpha$ et de $\beta$. Nous cherchons à savoir si le paramètre [?] est nul.\\
+Grâce à l’expérience menée par Van de Kerckhove et al. \cite{VMG}, nous connaissons $y(0)$, $y(1)$ et $y(2)$. Ces trois valeurs sont les réponses données par les sujets durant les trois tours du jeu. Nous n’avons pas ajouté de filtre supplémentaire aux données que nous utilisons. Nous pouvons alors faire une régression linéaire multiple afin de déterminer les valeurs de $\alpha$ et de $\beta$. $e$ correspond au terme d'erreur. Nous cherchons à savoir si le paramètre $\beta$ est nul.\\
 
 \section{Etude des erreurs}
 
@@ -244,9 +252,9 @@ Le but est de vérifier si ces erreurs sont de variance constante.\\
 
 \section{Bootstrap}
 
-Afin de déterminer si le paramètre [?] est significatif, nous allons utiliser la méthode du bootstrap. Cette méthode consiste à générer une nouvelle série de données par tirage uniforme dans la liste initiale. À partir de cette nouvelle liste, il est possible de recalculer de nouvelles valeurs pour les coefficients.\\
+Afin de déterminer si le paramètre $\beta$ est significatif, nous allons utiliser la méthode du bootstrap. Cette méthode consiste à générer une nouvelle série de données par tirage uniforme dans la liste initiale. À partir de cette nouvelle liste, il est possible de recalculer de nouvelles valeurs pour les coefficients.\\
 
-Il est alors possible de déterminer un seuil de confiance pour le coefficient ?. Si $0$ se ne se trouve pas dans ce seuil, nous pouvons considérer à $95\%$ que le paramètre est non nul. 
+Il est alors possible de déterminer un seuil de confiance pour le coefficient. Si $0$ se ne se trouve pas dans ce seuil, nous pouvons considérer à $95\%$ que le paramètre est non nul. 
 Nous pouvons ensuite déterminer la $p$-valeur afin de vérifier la validité de notre modèle.
 
 
