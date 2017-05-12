@@ -219,30 +219,30 @@ Nous allons dans un premier temps effectuer une régression linéaire multiple s
 
 \chapter{Méthode mise en oeuvre}
 
-\section{Présentation des articles}
+\section{Régression linéaire multiple}
 
-Afin de tester la validité du modèle de Friedkin et Johnson \cite{FJ}, nous allons utiliser les données obtenues grâce à l’expérience menée par Van de Kerckhove et al. \cite{VMG}. Nous utiliserons dans un premier temps les résultats obtenus lors du jeu de comptage, puis ceux obtenus dans le jeu d’évaluation des couleurs.\\
+Afin de tester la validité du modèle de Friedkin et Johnson \cite{FJ}, nous allons utiliser les données obtenues grâce à l’expérience menée par Van de Kerckhove et al. \cite{VMG}. Nous utiliserons dans un premier temps les résultats obtenus lors du jeu de comptage (counting game), puis ceux obtenus dans le jeu d’évaluation des couleurs (gauging game).\\
 
-Selon le modèle de Friedkin et Johnson, nous avons \cite{FJ} :\\
+Selon le modèle de Friedkin et Johnson, nous avons \eqref{1} et en remplaçant $W$ à l’aide de \eqref{WC} :\\
 
 \begin{equation}
-\label{1}
-y(t) =AWy(t-1)+(I-A)y(1)
+\label{21}
+y(t) =A(AC+I-A)y(t-1)+(I-A)y(1)
 \end{equation}
 
-En considérant uniquement cette formule au rang $t = 2$, nous obtenons :\\
+En considérant uniquement cette formule au rang $t = 3$ nous obtenons :\\
 \begin{equation}
-\label{1}
-y(2) =AWy(1)+(I-A)y(0)
+\label{22}
+y(3) = A^2C y(2) + A(I-A)y(2) + (I-A)y(1) 
 \end{equation}
 
-qui peut aussi s’écrire de la forme :\\
+Or, $A(I-A)y(2)$ correspond à la moyenne des réponses des individus de l'expérience à l'instant $t=2$. Ainsi, nous pouvons noter :\\
 \begin{equation}
-\label{2}
-y(2) = \alpha y(1) + \beta y(0) + e
+\label{23}
+y(3) = \alpha y(2) + \beta \bar{y}(2) + \gamma y(1) + e
 \end{equation}
 
-Grâce à l’expérience menée par Van de Kerckhove et al. \cite{VMG}, nous connaissons $y(0)$, $y(1)$ et $y(2)$. Ces trois valeurs sont les réponses données par les sujets durant les trois tours du jeu. Nous n’avons pas ajouté de filtre supplémentaire aux données que nous utilisons. Nous pouvons alors faire une régression linéaire multiple afin de déterminer les valeurs de $\alpha$ et de $\beta$. $e$ correspond au terme d'erreur. Nous cherchons à savoir si le paramètre $\beta$ est nul.\\
+Grâce à l’expérience menée par Van de Kerckhove et al. \cite{VMG}, nous connaissons $y(0)$, $y(1)$, $y(2)$, $\bar{y}(2)$ et $y(3)$. Ces valeurs correspondent aux réponses données par les sujets durant les trois tours du jeu. Nous n’avons pas ajouté de filtre supplémentaire aux données que nous utilisons. Nous pouvons alors faire une régression linéaire multiple afin de déterminer les valeurs de $\alpha$, $\beta$, $\gamma$ et $e$. $e$ correspond à l'ordonnée à l'origine. Nous cherchons à savoir si le paramètre $\gamma$ est nul.\\
 
 \section{Etude des erreurs}
 
@@ -252,12 +252,82 @@ Le but est de vérifier si ces erreurs sont de variance constante.\\
 
 \section{Bootstrap}
 
-Afin de déterminer si le paramètre $\beta$ est significatif, nous allons utiliser la méthode du bootstrap. Cette méthode consiste à générer une nouvelle série de données par tirage uniforme dans la liste initiale. À partir de cette nouvelle liste, il est possible de recalculer de nouvelles valeurs pour les coefficients.\\
+Afin de déterminer si le paramètre $\gamma$ est significatif, nous allons utiliser la méthode du bootstrap. Cette méthode consiste à générer une nouvelle série de données par tirage uniforme dans la liste initiale. À partir de cette nouvelle liste, il est possible de recalculer de nouvelles valeurs pour les coefficients.\\
 
 Il est alors possible de déterminer un seuil de confiance pour le coefficient. Si $0$ se ne se trouve pas dans ce seuil, nous pouvons considérer à $95\%$ que le paramètre est non nul. 
 Nous pouvons ensuite déterminer la $p$-valeur afin de vérifier la validité de notre modèle.
 
+\chapter{Résultats obtenus}
 
+\section{Première régression linéaire multiple}
+
+Nous avons effectué la régression linéaire présentée dans \eqref{23} avec les  séries de données à notre disposition, à savoir "counting game" et "gauging game". Les valeurs obtenues pour les coefficients sont résumés dans la table 3.1. Bien que le poids joué par $\gamma$ soit plus faible que celui de $\alpha$ et $\beta$, il ne nous est pas encore possible de dire si celui-ci est significatif. \\
+
+\begin{table}
+	\begin{tabular}{|p{4cm}|p{4.5cm}|p{4.5cm}|}
+		\hline
+ & Gauging game & Counting game \tabularnewline
+		\hline
+$\alpha \times y(2)$ & $\alpha =  0.6609$ & $\alpha = 0.7107$ \tabularnewline
+		\hline
+$\beta \times \bar{y}(2)$ & $\beta = 0.2532$ & $\beta =0.1724$ \tabularnewline
+		\hline
+$\gamma \times y(1)$ & $\gamma = 0.0872$  & $\gamma = 0.1212$ \tabularnewline
+		\hline
+$e$ &  0.4871 & 0.8456 \tabularnewline
+		\hline
+	\end{tabular}
+	\caption{Coefficients de la régression linéaire multiple}
+\end{table}
+
+Nous avons également représenté la valeur réelle de $y_{reel}(3)$ en fonction de la valeur $y_{predit}(3)$ obtenu avec ces coefficients dans le cas du counting game. Nous pouvons voir sur la figure \ref{fig1} l'apparition en lignes. En effet, les personnes interrogées lors de l'expérience préféraient donner des valeurs multiples de 50 ou de 10. Un phénomène similaire se produit si nous utilisons le second jeu de données.\\
+
+\begin{center}
+\includegraphics[trim = 3cm 9cm 3cm 9cm, clip]{yreelypredit.pdf}
+\captionof{figure}{$y_{reel}(3)$ en fonction de $y_{predit}(3)$}
+\label{fig1}
+\end{center}
+
+\section{Etude des erreurs}
+
+Intéressons nous maintenant aux erreurs. Plaçons nous dans un premier temps dans le cadre du counting game.Dans un premier temps, nous avons représenté l'écart entre$ y_{reel}(3)$ et $y_{predit}(3)$ en fonction de $ y_{reel}(3)$. Nous obtenons la figure \ref{fig2}.\\
+
+\begin{center}
+\includegraphics[trim = 3cm 9cm 3cm 9cm, clip]{residu.pdf}
+\captionof{figure}{Résidu}
+\label{fig2}
+\end{center}
+
+La figure \ref{fig3} présente l'écart-type et la moyenne de ces erreurs. Nous pouvons constater que l'écart type est constant tant que les valeurs de $y_{reel}(3)$ de sont ni trop faible (inférieur à 50) ou trop élevé (supérieur à 450). Il ne nous est donc pas complètement possible de valider l'homocédasticité des erreurs. Ceci peux venir du manque de résultat dans l'intervalle [0; 50] et [450; 500]. Il faut aussi prendre en compte que les résultats de l'expérience étaient borné. Nous obtenons des résultats similaire en utilisant la seconde série de données (gauging game)\\
+
+\begin{center}
+\includegraphics[trim = 3cm 9cm 3cm 9cm, clip]{residuMoyen.pdf}
+\captionof{figure}{Moyenne et écart-type des résidus}
+\label{fig3}
+\end{center}
+
+\section{Bootstrap}
+
+Nous allons maintenant vérifier si le coefficient $\gamma$ devant l'opinion initiale est significatif. Pour cela, suite au bootstrap, nous avons obtenus l'histogramme présent en figure \ref{fig4} (obtenu avec la série counting game). Il nous est alors possible d'encadrer à 95\% la valeur de $\gamma$. Ces valeurs sont résumées dans la table 3.2. Ainsi, on peux affirmer, à 95\%, que $\gamma$ est non nul. L'opinion initiale joue donc bien un rôle dans la décision finale.
+
+\begin{center}
+\includegraphics[trim = 3cm 9cm 3cm 9cm, clip]{bootstrap.pdf}
+\captionof{figure}{Répartition des différents valeur de $\gamma$}
+\label{fig4}
+\end{center}
+
+\begin{table}
+	\begin{tabular}{|p{4cm}|p{4.5cm}|p{4.5cm}|}
+		\hline
+ & Borne inférieure & Borne supérieur  \tabularnewline
+		\hline
+Gauging game & 0.0531 &  0.1236  \tabularnewline
+		\hline
+Counting game & 0.0937 & 0.1510 \tabularnewline
+		\hline
+	\end{tabular}
+	\caption{Encadrement à 95\% de $\gamma$}
+\end{table}
 
 \bibliographystyle{plain}
 \bibliography{references}
