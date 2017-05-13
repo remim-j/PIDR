@@ -169,6 +169,8 @@ Il est alors possible, grâce à $A$ et $C$ de déduire $W$ et de prédire les r
 
 \textbf{Méthode :} \\
 
+Dans le cas de Van de Kerckhove et al. \cite{VMG}, les valeurs  les participants, recrutés à l'aide de la plateforme de crowdsourcing,
+
 \textbf{Résultats :} \\
 
 \subsection{Limites des résultats}
@@ -223,26 +225,26 @@ Nous allons dans un premier temps effectuer une régression linéaire multiple s
 
 Afin de tester la validité du modèle de Friedkin et Johnson \cite{FJ}, nous allons utiliser les données obtenues grâce à l’expérience menée par Van de Kerckhove et al. \cite{VMG}. Nous utiliserons dans un premier temps les résultats obtenus lors du jeu de comptage (counting game), puis ceux obtenus dans le jeu d’évaluation des couleurs (gauging game).\\
 
-Selon le modèle de Friedkin et Johnson, nous avons \eqref{1} et en remplaçant $W$ à l’aide de \eqref{WC} :\\
+Selon le modèle de Friedkin et Johnson \cite{FJ}, nous avons \eqref{1} et en remplaçant $W$ à l’aide de \eqref{WC} :\\
 
 \begin{equation}
 \label{21}
-y(t) =A(AC+I-A)y(t-1)+(I-A)y(1)
+y(t) =A(AC+I-A)y(t-1)+(I-A)y(1).
 \end{equation}
 
 En considérant uniquement cette formule au rang $t = 3$ nous obtenons :\\
 \begin{equation}
 \label{22}
-y(3) = A^2C y(2) + A(I-A)y(2) + (I-A)y(1) 
+y(3) = A^2C y(2) + A(I-A)y(2) + (I-A)y(1).
 \end{equation}
 
 Or, $A(I-A)y(2)$ correspond à la moyenne des réponses des individus de l'expérience à l'instant $t=2$. Ainsi, nous pouvons noter :\\
 \begin{equation}
 \label{23}
-y(3) = \alpha y(2) + \beta \bar{y}(2) + \gamma y(1) + e
+y(3) = \alpha y(2) + \beta \bar{y}(2) + \gamma y(1) + e.
 \end{equation}
 
-Grâce à l’expérience menée par Van de Kerckhove et al. \cite{VMG}, nous connaissons $y(0)$, $y(1)$, $y(2)$, $\bar{y}(2)$ et $y(3)$. Ces valeurs correspondent aux réponses données par les sujets durant les trois tours du jeu. Nous n’avons pas ajouté de filtre supplémentaire aux données que nous utilisons. Nous pouvons alors faire une régression linéaire multiple afin de déterminer les valeurs de $\alpha$, $\beta$, $\gamma$ et $e$. $e$ correspond à l'ordonnée à l'origine. Nous cherchons à savoir si le paramètre $\gamma$ est nul.\\
+Grâce à l’expérience menée par Van de Kerckhove et al. \cite{VMG}, nous connaissons $y(0)$, $y(1)$, $y(2)$, $\bar{y}(2)$ et $y(3)$. Ces valeurs correspondent aux réponses données par les sujets durant les trois tours du jeu. Nous n’avons pas ajouté de filtre supplémentaire aux données que nous utilisons. Nous pouvons alors faire une régression linéaire multiple afin de déterminer les valeurs de $\alpha$, $\beta$, $\gamma$ et $e$, $e$ correspand à l'ordonnée à l'origine. Nous cherchons à savoir si le paramètre $\gamma$ est nul.\\
 
 \section{Etude des erreurs}
 
@@ -261,7 +263,7 @@ Nous pouvons ensuite déterminer la $p$-valeur afin de vérifier la validité de
 
 \section{Première régression linéaire multiple}
 
-Nous avons effectué la régression linéaire présentée dans \eqref{23} avec les  séries de données à notre disposition, à savoir "counting game" et "gauging game". Les valeurs obtenues pour les coefficients sont résumés dans la table 3.1. Bien que le poids joué par $\gamma$ soit plus faible que celui de $\alpha$ et $\beta$, il ne nous est pas encore possible de dire si celui-ci est significatif. \\
+Nous avons effectué la régression linéaire présentée dans \eqref{23} avec les  séries de données à notre disposition, à savoir "counting game" et "gauging game". Les valeurs obtenues pour les coefficients sont résumées dans la table 3.1. Bien que le poids induit par $\gamma$ soit plus faible que celui de $\alpha$ et $\beta$, il ne nous est pas encore possible de dire si celui-ci est significatif. \\
 
 \begin{table}
 	\begin{tabular}{|p{4cm}|p{4.5cm}|p{4.5cm}|}
@@ -290,7 +292,7 @@ Nous avons également représenté la valeur réelle de $y_{reel}(3)$ en fonctio
 
 \section{Etude des erreurs}
 
-Intéressons nous maintenant aux erreurs. Plaçons nous dans un premier temps dans le cadre du counting game.Dans un premier temps, nous avons représenté l'écart entre$ y_{reel}(3)$ et $y_{predit}(3)$ en fonction de $ y_{reel}(3)$. Nous obtenons la figure \ref{fig2}.\\
+Intéressons-nous maintenant aux erreurs. Plaçons-nous dans un premier temps dans le cadre du counting game. Nous avons représenté l'écart entre$ y_{reel}(3)$ et $y_{predit}(3)$ en fonction de $ y_{reel}(3)$, ce qui nous donne la figure \ref{fig2}.\\
 
 \begin{center}
 \includegraphics[trim = 3cm 9cm 3cm 9cm, clip]{residu.pdf}
@@ -298,7 +300,7 @@ Intéressons nous maintenant aux erreurs. Plaçons nous dans un premier temps da
 \label{fig2}
 \end{center}
 
-La figure \ref{fig3} présente l'écart-type et la moyenne de ces erreurs. Nous pouvons constater que l'écart type est constant tant que les valeurs de $y_{reel}(3)$ de sont ni trop faible (inférieur à 50) ou trop élevé (supérieur à 450). Il ne nous est donc pas complètement possible de valider l'homocédasticité des erreurs. Ceci peux venir du manque de résultat dans l'intervalle [0; 50] et [450; 500]. Il faut aussi prendre en compte que les résultats de l'expérience étaient borné. Nous obtenons des résultats similaire en utilisant la seconde série de données (gauging game)\\
+La figure \ref{fig3} présente l'écart-type et la moyenne de ces erreurs. Nous pouvons constater que l'écart type est constant tant que les valeurs de $y_{reel}(3)$ ne sont ni trop faible (inférieures à 50), ni trop élevées (supérieures à 450). Il ne nous est donc pas complètement possible de valider l'homocédasticité des erreurs. Ceci peux venir du manque de résultats dans les intervalles [0; 50] et [450; 500]. Il faut aussi prendre en compte que les résultats de l'expérience étaient bornés. Nous obtenons des résultats similaires en utilisant la seconde série de données (gauging game).\\
 
 \begin{center}
 \includegraphics[trim = 3cm 9cm 3cm 9cm, clip]{residuMoyen.pdf}
@@ -308,18 +310,18 @@ La figure \ref{fig3} présente l'écart-type et la moyenne de ces erreurs. Nous 
 
 \section{Bootstrap}
 
-Nous allons maintenant vérifier si le coefficient $\gamma$ devant l'opinion initiale est significatif. Pour cela, suite au bootstrap, nous avons obtenus l'histogramme présent en figure \ref{fig4} (obtenu avec la série counting game). Il nous est alors possible d'encadrer à 95\% la valeur de $\gamma$. Ces valeurs sont résumées dans la table 3.2. Ainsi, on peux affirmer, à 95\%, que $\gamma$ est non nul. L'opinion initiale joue donc bien un rôle dans la décision finale.
+Nous allons maintenant vérifier si le coefficient $\gamma$ devant l'opinion initiale est significatif. Pour cela, suite au bootstrap, nous avons obtenus l'histogramme présent en figure \ref{fig4} (obtenu avec la série counting game). Il nous est alors possible d'encadrer à 95\% la valeur de $\gamma$. Ces valeurs sont résumées dans la table 3.2. Ainsi, on peut affirmer, à 95\%, que $\gamma$ est non nul. L'opinion initiale joue donc bien un rôle dans la décision finale.
 
 \begin{center}
 \includegraphics[trim = 3cm 9cm 3cm 9cm, clip]{bootstrap.pdf}
-\captionof{figure}{Répartition des différents valeur de $\gamma$}
+\captionof{figure}{Répartition des différentes valeurs de $\gamma$}
 \label{fig4}
 \end{center}
 
 \begin{table}
 	\begin{tabular}{|p{4cm}|p{4.5cm}|p{4.5cm}|}
 		\hline
- & Borne inférieure & Borne supérieur  \tabularnewline
+ & Borne inférieure & Borne supérieure  \tabularnewline
 		\hline
 Gauging game & 0.0531 &  0.1236  \tabularnewline
 		\hline
