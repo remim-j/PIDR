@@ -70,7 +70,7 @@ L’objectif de l'article \cite{FJ} est de parvenir à valider un modèle relian
 y(t) =AWy(t-1)+(I-A)y(1), 
 \end{equation}
 
-avec $y(t)=(y_1(t), y_2(t), ... , y_n(t))^T$ le vecteur de taille $N$ contenant la valeur de l’opinion des $N$ participants à l’instant $t$, $A=diag((a_{ii})_i)$, la matrice diagonale de taille $N\times N$, où $a_{ii}$ représente le poids que l'individu $i$ accorde à l'opinion des autres participants, $W$ la matrice diagonale $N\times N$, avec $w_{ij}$ l’influence de l’individu $j$ sur l’individu $i$, avec $\sum_{i=1}^{N} w_{ij} = 1$. \\
+avec $y(t)=(y_1(t), y_2(t), ... , y_n(t))^T$ le vecteur de taille $N$ contenant la valeur de l’opinion des $N$ participants à l’instant $t$, $A=diag((a_{ii})_i)$, la matrice diagonale de taille $N\times N$, où $a_{ii}$ représente le poids que l'individu $i$ accorde à l'opinion des autres participants, $W$ la matrice $N\times N$, avec $w_{ij}$ l’influence de l’individu $j$ sur l’individu $i$, avec $\sum_{i=1}^{N} w_{ij} = 1$. \\
 
  Il est possible de poser :\\
 \begin{equation}
@@ -87,7 +87,7 @@ Le modèle proposé dans l'article \cite{VMG} est similaire au précédent. Cepe
 y(t) =(I-A'(t-1))y(t-1)+A'(t-1)\bar{y}(t-1) 
 \end{equation}
 
-On remarque qu’ici, la matrice $A' = diag(a_{ii})$ qui représente l'influençabilité dépend de l’instant auquel on effectue l’expérience. En effet, au bout d'un certain nombre de répétitions, l'opinion de l'individu n'évolue plus. Il n'est donc plus affecté par l'opinion des autres et son influençabilité diminue. La variable $\bar{y}(t)$ représente la moyenne des valeurs des opinions à l’instant $t$. On peut aussi écrire la formule \eqref{2} sous la forme :
+On remarque qu’ici, la matrice $A' = diag(a_{ii})$ qui représente l'influençabilité (c'est-à-dire le poids accordé à l'opinion des autres) dépend de l’instant auquel on effectue l’expérience. En effet, au bout d'un certain nombre de répétitions, l'opinion de l'individu n'évolue plus. Il n'est donc plus affecté par l'opinion des autres et son influençabilité diminue. La variable $\bar{y}(t)$ représente la moyenne des valeurs des opinions à l’instant $t$. On peut aussi écrire la formule \eqref{2} sous la forme :
 
 \begin{dmath}
 \label{3}
@@ -184,7 +184,7 @@ Dans le cas de Van de Kerckhove et al. \cite{VMG}, les valeurs $y(1)$, $y(2)$ et
 
 \textbf{Résultats :} \\
 
-De ces mesures, on peut déduire pour tout $t$, la matrice des influences relatives $A(t)$ de l'équation \eqref{3}. Ce paramètre permet ensuite de prédire les résultats obtenus, à l'aide du modèle de l'équation \eqref{2}. Ces résultats ont ensuite été validé à l'aide de la méthode de validation croisée. La somme des erreurs dans prédictions au carré est ici dans l'intervalle de confiance à $95\%$, ce qui permet de valider le modèle.\\
+De ces mesures, on peut déduire pour tout $t$, la matrice des influences relatives $A(t)$ de l'équation \eqref{3}. Ce paramètre permet ensuite de prédire les résultats obtenus, à l'aide du modèle de l'équation \eqref{2}. Ces résultats ont ensuite été validés à l'aide de la méthode de validation croisée. La somme des erreurs dans prédictions au carré est ici dans l'intervalle de confiance à $95\%$, ce qui permet de valider le modèle.\\
 
 \subsection{Limites des résultats}
 
@@ -261,7 +261,7 @@ Grâce à l’expérience menée par Van de Kerckhove et al. \cite{VMG}, nous co
 
 \section{Etude des erreurs}
 
-Afin de vérifier les hypothèses de la régression linéaire, il nous faut vérifier homoscédasticité des erreurs. Nous allons donc dans un premier temps calculer l’erreur commise à partir de la valeur de $y_{theorique} – y_{reel}$. Nous déterminons ensuite la moyenne et la variance de ces erreurs que nous calculons sur des plages de valeurs.\\
+Afin de vérifier les hypothèses de la régression linéaire, il nous faut vérifier homoscédasticité. Nous allons donc dans un premier temps calculer l’erreur commise à partir de la valeur de $y_{theorique} – y_{reel}$. Nous déterminons ensuite la moyenne et la variance de ces erreurs que nous calculons sur des plages de valeurs.\\
 
 Le but est de vérifier si ces erreurs sont de variance constante.\\
 
@@ -339,7 +339,7 @@ La figure \ref{fig3} présente l'écart-type et la moyenne de ces erreurs. Nous 
 
 \section{Bootstrap}
 
-Nous allons maintenant vérifier si le coefficient $\gamma$ devant l'opinion initiale est significatif. Pour cela, suite au bootstrap, nous avons obtenus l'histogramme présent en figure \ref{fig4} (obtenu avec la série counting game). Il nous est alors possible d'encadrer à 95\% la valeur de $\gamma$. Ces valeurs sont résumées dans la table 3.2. Ainsi, on peut affirmer, à 95\%, que $\gamma$ est non nul. L'opinion initiale joue donc bien un rôle dans la décision finale.
+Nous allons maintenant vérifier si le coefficient $\gamma$ devant l'opinion initiale est significatif. Pour cela, suite au bootstrap, nous avons obtenus l'histogramme présent en figure \ref{fig4} (obtenu avec la série counting game). Il nous est alors possible d'encadrer à 95\% la valeur de $\gamma$. Ces valeurs sont résumées dans la table 3.2. Ainsi, on peut affirmer, à $95\%$, que $\gamma$ est non nul. L'opinion initiale joue donc bien un rôle dans la décision finale.
 
 \end{multicols}
 
@@ -362,12 +362,20 @@ Counting game & 0.0937 & 0.1510 \tabularnewline
 	\caption{Encadrement à 95\% de $\gamma$}
 \end{table}
 
+\begin{multicols}{2}
+
+\chapter{Conclusion}
+
+Nous avons donc confronté les deux modèles d'évolution de l'opinion d'un individu dans le temps, de Friedkin et Johnson \cite{FJ} et de Van de Kerckhove et al. \cite{VMG}. Cette confrontation a été faite sur un même jeu de données issu des expériences de crowdsourcing de l'expérience de Van de Kerckhove et al. \cite{VMG}.\\
+
+Nous avons tenté de valider ce modèle à l'aide d'une régression linéaire multiple pour laquelle nous avons étudié les écarts entre les valeurs théoriques et les valeurs réelles de sotre à savoir si l'on pouvait conclure à l'homoscédasticité du modèle. Nous avons ensuite essayé de déterminer la non-nullité de l'opinion initiale, dont la prise en compte est l'une des principales différences entre les deux modèles.\\
+
+Les tests menés dans le cadre de cette expérience ne nous permettent pas d'être assurés de l'homoscédasticité du modèle. En revanche, nous avons conclu que l'on pouvait affirmer la non-nullité du poids de l'opinion initiale dans la prise de décision finale. \\
+
+
+\end{multicols}
+
 \bibliographystyle{plain}
 \bibliography{references}
-
-
-
-
-
 
 \end{document}
