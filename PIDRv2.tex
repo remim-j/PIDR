@@ -57,20 +57,20 @@
 
 Les deux articles que nous allons étudier sont “Social influence networks and opinion change”, écrit par Noah E. Friedkin et Eugene C. Johnson \cite{FJ} et “Modelling influence and opinion evolution in online collective behaviour”, de Corentin Vande Kerckhove, Samuel Martin, Pascal Gend, Peter J. Rentfrow, Julien M. Hendrickx et Vincent D. Blondel \cite{VMG}.\\
 
-L’article \cite{FJ} de Friedkin et Johnson porte sur les dynamiques d’opinion. C’est-à-dire la façon dont des individus peuvent modifier leurs opinions lorsqu’ils sont confrontés à un groupe de personne. Plus précisément, il s’interroge sur la possibilité de parvenir à un consensus entre les acteurs. Le document a été écrit en 1999. De nombreuses études avaient déjà été menées depuis 1950, notamment par John French, dont on peut citer l'article "A formal theory of social power" \cite{French} de 1956 ou encore Ash, à qui l'on doit "Effects of group pressure upon the modification and distortion of judgments" \cite{Asch}.\\
+L’article \cite{FJ} de Friedkin et Johnson porte sur les dynamiques d’opinion. C’est-à-dire la façon dont des individus peuvent modifier leurs opinions lorsqu’ils sont confrontés à un groupe de personne. Plus précisément, il s’interroge sur la possibilité de parvenir à un consensus entre les acteurs. Le document a été écrit en 1999. De nombreuses études avaient déjà été menées depuis 1950, notamment par John French, dont on peut citer l'article ``A formal theory of social power'' \cite{French} de 1956 ou encore Ash, à qui l'on doit "Effects of group pressure upon the modification and distortion of judgments" \cite{Asch}.\\
 
 Le second article \cite{VMG}, plus récent, date de 2016. Il reprend le thème des dynamiques d’opinion mais avec une théorie différente de la précédente. L'article évalue la capacité d'un modèle simple à prédire l'évolution de l'opinion.
 
 \section{La théorie présentée}
 
-L’objectif de l'article \cite{FJ} est de parvenir à valider un modèle reliant l’évolution de l’opinion d’un individu en la confrontant à celle d’autres individus. Les participants pouvaient être encouragés, ou non, à parvenir à un consensus. Le modèle proposé relie l’opinion d’une personne $i$ à l’instant $t$ à l’opinion de tous les autres participants à l’instant $t$-1 ainsi qu’à son opinion initiale. On la note $y_i(t)$. On a :\\
+L’objectif de l'article \cite{FJ} est de parvenir à valider un modèle reliant l’évolution de l’opinion d’un individu en la confrontant à celle d’autres individus. Les participants pouvaient être encouragés, ou non, à parvenir à un consensus. Le modèle proposé relie l’opinion d’une personne $i$ à l’instant $t$ à l’opinion de tous les autres participants à l’instant $t$-1 ainsi qu’à son opinion initiale. On la note $y_i(t)$. On a :
 
 \begin{equation}
 \label{1}
 y(t) =AWy(t-1)+(I-A)y(1), 
 \end{equation}
 
-avec $y(t)=(y_1(t), y_2(t), ... , y_n(t))^T$ le vecteur de taille $N$ contenant la valeur de l’opinion des $N$ participants à l’instant $t$, $A=diag((a_{ii})_i)$, la matrice diagonale de taille $N\times N$, où $a_{ii}$ représente le poids que l'individu $i$ accorde à l'opinion des autres participants, $W$ la matrice $N\times N$, avec $w_{ij}$ l’influence de l’individu $j$ sur l’individu $i$, avec $\sum_{i=1}^{N} w_{ij} = 1$. \\
+\noindent avec $y(t)=(y_1(t), y_2(t), ... , y_n(t))^T$ le vecteur de taille $N$ contenant la valeur de l’opinion des $N$ participants à l’instant $t$, $A=diag((a_{ii})_i)$, la matrice diagonale de taille $N\times N$, où $a_{ii}$ représente le poids que l'individu $i$ accorde à l'opinion des autres participants, $W=(w_{ij})_{ij}$ la matrice $N\times N$, avec $w_{ij}$ l’influence de l’individu $j$ sur l’individu $i$, avec $\sum_{i=1}^{N} w_{ij} = 1$. \\
 
  Il est possible de poser :\\
 \begin{equation}
@@ -78,16 +78,16 @@ avec $y(t)=(y_1(t), y_2(t), ... , y_n(t))^T$ le vecteur de taille $N$ contenant 
  W=AC+I-A,
 \end{equation}
 
-où C correspond à la matrice $N \times N$ d'influence relative. Le poids $c_{ij}$ correspond à l'influence de j sur i. Tous les coefficients diagonaux de C sont nuls et $\sum_{i=1}^{N} c_{ij} = 1$. \\
+\noindent où C correspond à la matrice $N \times N$ d'influence relative. Le poids $c_{ij}$ correspond à l'influence de j sur i. Tous les coefficients diagonaux de C sont nuls et $\sum_{i=1}^{N} c_{ij} = 1$. \\
 
-Le modèle proposé dans l'article \cite{VMG} est similaire au précédent. Cependant, l’influence initiale n'intervient plus dans la formule.\\
+Le modèle proposé dans l'article \cite{VMG} est similaire au précédent. Cependant, l’influence initiale n'intervient plus dans la formule :
 
 \begin{equation}
 \label{2}
-y(t) =(I-A'(t-1))y(t-1)+A'(t-1)\bar{y}(t-1) 
+y(t) =(I-A'(t-1))y(t-1)+A'(t-1)\bar{y}(t-1).
 \end{equation}
 
-On remarque qu’ici, la matrice $A' = diag(a_{ii})$ qui représente l'influençabilité (c'est-à-dire le poids accordé à l'opinion des autres) dépend de l’instant auquel on effectue l’expérience. En effet, au bout d'un certain nombre de répétitions, l'opinion de l'individu n'évolue plus. Il n'est donc plus affecté par l'opinion des autres et son influençabilité diminue. La variable $\bar{y}(t)$ représente la moyenne des valeurs des opinions à l’instant $t$. On peut aussi écrire la formule \eqref{2} sous la forme :
+La variable $\bar{y}(t)$ correspond au vecteur colonne contenant à chaque lignes la moyenne des valeurs des opinions à l'instant $t$. On remarque qu’ici, la matrice $A'(t) = diag(a_{ii}(t))$ qui représente l'influençabilité (c'est-à-dire le poids accordé à l'opinion des autres) dépend de la manche à laquelle on effectue l’expérience. En effet, au bout d'un certain nombre de répétitions, l'opinion de l'individu n'évolue plus. Il n'est donc plus affecté par l'opinion des autres et son influençabilité diminue. On peut aussi écrire la formule \eqref{2} sous la forme :
 
 \begin{dmath}
 \label{3}
@@ -107,9 +107,9 @@ Nous pouvons alors dresser un comparatif des deux modèles dans la Table 1.1.\\
 		\hline
 Coefficient devant l'opinion initiale & $I-A$ & $0$ & L'opinion initiale n'est pas prise en compte dans l'article \cite{VMG} \tabularnewline
 		\hline
-Coefficient devant la réponse de l'individu à l'instant précédent & $A(A-I)$ & $(I-A'(t-1))$ & Dans le modèle  \cite{VMG}, Le poids donné à sa propre opinion varie au bout du temps \tabularnewline
+Coefficient devant la réponse de l'individu à l'instant précédent & $A(A-I)$ & $(I-A'(t-1))$ & Dans le modèle  \cite{VMG}, Le poids donné à sa propre opinion varie au cours du temps \tabularnewline
 		\hline
-Coefficient devant l'opinion du groupe à l'instant précédent & $A^{2}C$ & $A'(t-1)(\frac{1}{n} \textbf{1} ^T\times \textbf{1})$ & Dans l'article \cite{VMG}, la même influence est attribuée à chaque participant sur l'individu \tabularnewline
+Coefficient devant l'opinion du groupe à l'instant précédent & $A^{2}C$ & $A'(t-1)(\frac{1}{n} \textbf{1} ^T\times \textbf{1})$ & Dans l'article \cite{VMG}, pour un individu, celui-ci est influencé de la même façon par les autre participants \tabularnewline
 		\hline
 	\end{tabular}
 	\caption{Comparaison des 2 modèles}
@@ -124,7 +124,7 @@ Coefficient devant l'opinion du groupe à l'instant précédent & $A^{2}C$ & $A'
 
 Les deux articles étudiés présentent chacun une expérience cherchant à montrer la validité de leur modèle.\\
 
-Dans l’article de Friedkin et Johnson \cite{FJ}, l’expérience consistait à former des groupes de deux à quatre personnes. Un total de 368 personnes a participé. Une question était posée à chaque groupe, par exemple : \textit{À combien estimez-vous le salaire horaire des travailleurs non-diplômés  travaillant sur un site de désamiantage ?}. Les individus donnaient chacun un résultat. S’ensuivait une conversation téléphonique avec d’autres participants. Ils pouvaient alors donner une nouvelle réponse. L’opération se répétait jusqu’à ce que la situation n’évolue plus et tous les résultats intermédiaires sont conservés. Il est ensuite demandé aux différents participants d’estimer à quel point ils pensent avoir été influencés par les autres. Pour ce faire, ils devaient répartir une pile de jetons de poker.\\
+Dans l’article de Friedkin et Johnson \cite{FJ}, l’expérience consistait à former des groupes de deux à quatre personnes. Un total de 368 personnes ont participé. Une question était posée à chaque groupe, par exemple : \textit{ ``À combien estimez-vous le salaire horaire des travailleurs non-diplômés  travaillant sur un site de désamiantage ?''}. Les individus donnaient chacun un résultat. S’ensuivait une conversation téléphonique avec d’autres participants. Ils pouvaient alors donner une nouvelle réponse. L’opération se répétait jusqu’à ce que la situation n’évolue plus et tous les résultats intermédiaires sont conservés. Il est ensuite demandé aux différents participants d’estimer à quel point ils pensent avoir été influencés par les autres. Pour ce faire, ils devaient répartir une pile de jetons de poker.\\
 
 Dans le cas de l’article \cite{VMG}, une plateforme de crowdsourcing a été utilisée afin de recruter 861 sujets. Un groupe était formé de six personnes ou moins. Deux jeux leurs étaient proposés. Le premier consistait à évaluer le nombre de points dans une image. Le second à évaluer la proportion d'une couleur dans une image. Le jeu était divisé en trois phases. Par exemple, pour le premier jeu, lors de la première phase, l'individu devait évaluer, seul, le nombre de points présents sur chacune des 30 images. Lors de la seconde phase, il avait accès aux estimations des cinq autres participants, et pouvait modifier ses réponses en conséquence. La troisième phase correspond à une répétition de la deuxième phase. Les estimations alors présentées sont celles de la deuxième phase. \\
 
@@ -257,7 +257,7 @@ Or, $A(I-A)y(2)$ correspond à la moyenne des réponses des individus de l'expé
 y(3) = \alpha y(2) + \beta \bar{y}(2) + \gamma y(1) + e.
 \end{equation}
 
-Grâce à l’expérience menée par Vande Kerckhove et al. \cite{VMG}, nous connaissons $y(0)$, $y(1)$, $y(2)$, $\bar{y}(2)$ et $y(3)$. Ces valeurs correspondent aux réponses données par les sujets durant les trois tours du jeu. Nous n’avons pas ajouté de filtre supplémentaire aux données que nous utilisons. Nous pouvons alors faire une régression linéaire multiple afin de déterminer les valeurs de $\alpha$, $\beta$, $\gamma$ et $e$, $e$ correspand à l'ordonnée à l'origine. Nous cherchons à savoir si le paramètre $\gamma$ est nul.\\
+Grâce à l’expérience menée par Vande Kerckhove et al. \cite{VMG}, nous connaissons $y(0)$, $y(1)$, $y(2)$, $\bar{y}(2)$ et $y(3)$. Ces valeurs correspondent aux réponses données par les sujets durant les trois tours du jeu. Nous pouvons alors faire une régression linéaire multiple afin de déterminer les valeurs de $\alpha$, $\beta$, $\gamma$ et $e$, $e$ correspand à l'ordonnée à l'origine. Nous cherchons à savoir si le paramètre $\gamma$ est nul.\\
 
 \section{Etude des erreurs}
 
@@ -267,7 +267,7 @@ Le but est de vérifier si ces erreurs sont de variance constante.\\
 
 \section{Bootstrap}
 
-Afin de déterminer si le paramètre $\gamma$ est significatif, nous allons utiliser la méthode du bootstrap. Cette méthode consiste à générer une nouvelle série de données par tirage uniforme dans la liste initiale. À partir de cette nouvelle liste, il est possible de recalculer de nouvelles valeurs pour les coefficients.\\
+Afin de déterminer si le paramètre $\gamma$ est significatif, nous allons utiliser la méthode du bootstrap. Cette méthode consiste à générer une nouvelle série de données par tirage uniforme avec remise dans la liste initiale. À partir de cette nouvelle liste, il est possible de recalculer de nouvelles valeurs pour les coefficients.\\
 
 Il est alors possible de déterminer un seuil de confiance pour le coefficient. Si $0$ se ne se trouve pas dans ce seuil, nous pouvons considérer à $95\%$ que le paramètre est non nul. 
 Nous pouvons ensuite déterminer la $p$-valeur afin de vérifier la validité de notre modèle.
@@ -285,13 +285,13 @@ Nous avons effectué la régression linéaire présentée dans \eqref{23} avec l
 		\hline
  & Gauging game & Counting game \tabularnewline
 		\hline
-$\alpha \times y(2)$ & $\alpha =  0.6609$ & $\alpha = 0.7107$ \tabularnewline
+$\alpha \times y(2)$ & $\alpha =  0.66$ & $\alpha = 0.71$ \tabularnewline
 		\hline
-$\beta \times \bar{y}(2)$ & $\beta = 0.2532$ & $\beta =0.1724$ \tabularnewline
+$\beta \times \bar{y}(2)$ & $\beta = 0.25$ & $\beta =0.17$ \tabularnewline
 		\hline
-$\gamma \times y(1)$ & $\gamma = 0.0872$  & $\gamma = 0.1212$ \tabularnewline
+$\gamma \times y(1)$ & $\gamma = 0.09$  & $\gamma = 0.12$ \tabularnewline
 		\hline
-$e$ &  0.4871 & 0.8456 \tabularnewline
+$e$ &  0.49 & 0.85 \tabularnewline
 		\hline
 	\end{tabular}
 	\caption{Coefficients de la régression linéaire multiple}
@@ -299,13 +299,13 @@ $e$ &  0.4871 & 0.8456 \tabularnewline
 
 \begin{multicols}{2}
 
-Nous avons également représenté la valeur réelle de $y_{reel}(3)$ en fonction de la valeur $y_{predit}(3)$ obtenu avec ces coefficients dans le cas du counting game. Nous pouvons voir sur la figure \ref{fig1} l'apparition en lignes. En effet, les personnes interrogées lors de l'expérience préféraient donner des valeurs multiples de 50 ou de 10. Un phénomène similaire se produit si nous utilisons le second jeu de données.\\
+Nous avons également représenté la valeur réelle de $y_{reel}(3)$ en fonction de la valeur $y_{predit}(3)$ obtenu avec ces coefficients dans le cas du counting game. Nous pouvons voir sur la Figure \ref{fig1} l'apparition de lignes. En effet, les personnes interrogées lors de l'expérience préféraient donner des valeurs multiples de 50 ou de 10. Un phénomène similaire se produit si nous utilisons le second jeu de données.\\
 
 \end{multicols}
 
 \begin{center}
 \includegraphics[trim = 3cm 9cm 3cm 9cm, clip]{yreelypredit.pdf}
-\captionof{figure}{$y_{reel}(3)$ en fonction de $y_{predit}(3)$}
+\captionof{figure}{$y_{reel}(3)$ en fonction de $y_{predit}(3)$ (counting game)}
 \label{fig1}
 \end{center}
 
@@ -313,19 +313,19 @@ Nous avons également représenté la valeur réelle de $y_{reel}(3)$ en fonctio
 
 \section{Etude des erreurs}
 
-Intéressons-nous maintenant aux erreurs. Plaçons-nous dans un premier temps dans le cadre du counting game. Nous avons représenté l'écart entre$ y_{reel}(3)$ et $y_{predit}(3)$ en fonction de $ y_{reel}(3)$, ce qui nous donne la figure \ref{fig2}.\\
+Intéressons-nous maintenant aux erreurs. Plaçons-nous dans un premier temps dans le cadre du counting game. Nous avons représenté l'écart entre $y_{reel}(3)$ et $y_{predit}(3)$ en fonction de $ y_{reel}(3)$, ce qui nous donne la figure \ref{fig2}. Celle-ci montre l'indépendance entre les résidus et les valeurs de $y_{reel}$.\\
 
 \end{multicols}
 
 \begin{center}
 \includegraphics[trim = 3cm 9cm 3cm 9cm, clip]{residu.pdf}
-\captionof{figure}{Résidu}
+\captionof{figure}{Résidus (counting game)}
 \label{fig2}
 \end{center}
 
 \begin{multicols}{2}
 
-La figure \ref{fig3} présente l'écart-type et la moyenne de ces erreurs. Nous pouvons constater que l'écart type est constant tant que les valeurs de $y_{reel}(3)$ ne sont ni trop faible (inférieures à 50), ni trop élevées (supérieures à 450). Il ne nous est donc pas complètement possible de valider l'homocédasticité des erreurs. Ceci peux venir du manque de résultats dans les intervalles [0; 50] et [450; 500]. Il faut aussi prendre en compte que les résultats de l'expérience étaient bornés. Nous obtenons des résultats similaires en utilisant la seconde série de données (gauging game).\\
+La figure \ref{fig3} présente l'écart-type et la moyenne glissante de ces erreurs sur une fenêtre de 25. Nous pouvons constater que l'écart type est constant tant que les valeurs de $y_{reel}(3)$ ne sont ni trop faible (inférieures à 50), ni trop élevées (supérieures à 450). Il ne nous est donc pas complètement possible de valider l'homocédasticité des erreurs. Ceci peux venir du manque de résultats dans les intervalles [0; 50] et [450; 500]. Il faut aussi prendre en compte que les résultats de l'expérience étaient bornés. Nous obtenons des résultats similaires en utilisant la seconde série de données (gauging game).\\
 
 \end{multicols}
 
@@ -354,9 +354,9 @@ Nous allons maintenant vérifier si le coefficient $\gamma$ devant l'opinion ini
 		\hline
  & Borne inférieure & Borne supérieure  \tabularnewline
 		\hline
-Gauging game & 0.0531 &  0.1236  \tabularnewline
+Gauging game & 0.05 &  0.12  \tabularnewline
 		\hline
-Counting game & 0.0937 & 0.1510 \tabularnewline
+Counting game & 0.09 & 0.15 \tabularnewline
 		\hline
 	\end{tabular}
 	\caption{Encadrement à 95\% de $\gamma$}
@@ -368,7 +368,7 @@ Counting game & 0.0937 & 0.1510 \tabularnewline
 
 \chapter{Conclusion}
 
-Nous avons donc confronté les deux modèles d'évolution de l'opinion d'un individu. Nous avons remarqué l'absence de l'opinion initiale dans le modèle proposé par Vande Kerckhove et al. \cite{VMG}. Nous avons donc pu utiliser les données obtenues par Vande Kerckhove et al. \cite{VMG} afin de vérifier le modèle de Friedkin et Johnson \cite{FJ}.\\
+Nous avons donc confronté les deux modèles d'évolution de l'opinion d'un individu. Nous avons remarqué l'absence de l'influence de l'opinion initiale dans le modèle proposé par Vande Kerckhove et al. \cite{VMG}. Nous avons donc pu utiliser les données obtenues par Vande Kerckhove et al. \cite{VMG} afin de vérifier le modèle de Friedkin et Johnson \cite{FJ}.\\
 
 Nous avons tenté de valider ce modèle à l'aide d'une régression linéaire multiple pour laquelle nous avons étudié les écarts entre les valeurs théoriques et les valeurs réelles de sorte à savoir si l'on pouvait conclure à l'homoscédasticité du modèle. Nous avons ensuite essayé de déterminer la non-nullité du coefficient devant l'opinion initiale.\\
 
