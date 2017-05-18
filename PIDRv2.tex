@@ -51,6 +51,17 @@
 \newpage
 \begin{multicols}{2}
 
+\chapter{Introduction}
+
+L’évolution des dynamiques d’opinions est un sujet particulièrement important, notamment dans le contexte actuel où les phénomènes de mode s’enchaînent et les avis des individus semblent plus que jamais volatils. On peut évoquer en particulier les phénomènes viraux sur Internet, ou l’évolution rapide des cotes de popularité en politique, comme exemples marquants de cette problématique.\\
+
+Ainsi, il semble crucial de parvenir à prédire l’évolution des opinions à l’aide de modèles mathématiques, par exemple dans des buts lucratifs (anticiper les phénomènes de mode, etc.), ou électoraux (connaître le moment propice pour faire une annonce, etc.).\\
+
+Ce projet a pour but d’étudier deux modèles d’évolution des dynamiques d’opinion, et de chercher à valider l’un des deux à l’aide des données issues de l’expérience de l’autre. \\
+
+Cependant, il faut garder à l’esprit que les expériences étudiées correspondent à des questions objectives qui sont différentes du contexte réel.\\
+
+
 \chapter{Étude des articles}
 
 \section{Présentation des articles}
@@ -251,13 +262,15 @@ En considérant uniquement cette formule au rang $t = 3$ nous obtenons :\\
 y(3) = A^2C y(2) + A(I-A)y(2) + (I-A)y(1).
 \end{equation}
 
-Or, $A(I-A)y(2)$ correspond à la moyenne des réponses des individus de l'expérience à l'instant $t=2$. Ainsi, nous pouvons noter :\\
+Or, comme nous utilisons les données obtenues par l'expérience de Van de Kerckhove \cite{VMG}, les individus n'ont pas de contact direct entre eux. Ainsi, l'ensemble des participants influencent chaque individu de la même façon. La matrice $C$ est donc constante. On peut écrire la formule pour un seul individu $i$.
+De plus, $A(I-A)y(2)$ correspond à la moyenne des réponses des individus de l'expérience à l'instant $t=2$. Ainsi, nous pouvons noter :\\
 \begin{equation}
 \label{23}
-y(3) = \alpha y(2) + \beta \bar{y}(2) + \gamma y(1) + e.
+y_{i}(3) = \alpha y_{i}(2) + \beta \bar{y}_{i}(2) + \gamma y(1)_{i} + e.
 \end{equation}
 
-Grâce à l’expérience menée par Vande Kerckhove et al. \cite{VMG}, nous connaissons $y(0)$, $y(1)$, $y(2)$, $\bar{y}(2)$ et $y(3)$. Ces valeurs correspondent aux réponses données par les sujets durant les trois tours du jeu. Nous pouvons alors faire une régression linéaire multiple afin de déterminer les valeurs de $\alpha$, $\beta$, $\gamma$ et $e$, $e$ correspand à l'ordonnée à l'origine. Nous cherchons à savoir si le paramètre $\gamma$ est nul.\\
+Les coefficients $\alpha$, $\beta$ et $\gamma$ sont les mêmes pour tous les participants. $e$ correspond à l'ordonnée à l'origine.
+Grâce à l’expérience menée par Vande Kerckhove et al. \cite{VMG}, nous connaissons $y(0)$, $y(1)$, $y(2)$, $\bar{y}(2)$ et $y(3)$. Ces valeurs correspondent aux réponses données par les sujets durant les trois tours du jeu. Nous pouvons alors faire une régression linéaire multiple afin de déterminer les valeurs de $\alpha$, $\beta$, $\gamma$ et $e$. Nous cherchons à savoir si le paramètre $\gamma$ se trouvant devant l'opinion initiale est nul.\\
 
 \section{Etude des erreurs}
 
@@ -325,14 +338,22 @@ Intéressons-nous maintenant aux erreurs. Plaçons-nous dans un premier temps da
 
 \begin{multicols}{2}
 
-La figure \ref{fig3} présente l'écart-type et la moyenne glissante de ces erreurs sur une fenêtre de 25. Nous pouvons constater que l'écart type est constant tant que les valeurs de $y_{reel}(3)$ ne sont ni trop faibles (inférieures à 50), ni trop élevées (supérieures à 450). Il ne nous est donc pas complètement possible de valider l'homocédasticité des erreurs. Ceci peut venir du manque de résultats dans les intervalles [0; 50] et [450; 500]. Il faut aussi prendre en compte que les résultats de l'expérience étaient bornés. Nous obtenons des résultats similaires en utilisant la seconde série de données (gauging game).\\
+La figure \ref{fig3} présente l'écart-type et la moyenne glissante de ces erreurs sur une fenêtre de 25 valeurs. Nous pouvons constater que l'écart type est constant tant que les valeurs de $y_{reel}(3)$ ne sont ni trop faibles (inférieures à 50), ni trop élevées (supérieures à 450). Il ne nous est donc pas complètement possible de valider l'homocédasticité des erreurs. Ceci peut venir du manque de résultats dans les intervalles [0; 50] et [450; 500]. Il faut aussi prendre en compte que les résultats de l'expérience étaient bornés. Nous obtenons des résultats similaires en utilisant la seconde série de données (gauging game).\\
 
 \end{multicols}
 
 \begin{center}
 \includegraphics[trim = 3cm 9cm 3cm 9cm, clip]{residuMoyen.pdf}
-\captionof{figure}{Moyenne et écart-type des résidus}
+\captionof{figure}{Moyenne et écart-type des résidus (counting game)}
 \label{fig3}
+\end{center}
+
+Nous avons également tracé une courbe quantile-quantile (Figure \ref{fig3.5}) afin de vérifier que les résidus suivent bien une loi normale. Ainsi, nous pouvons voir que les erreurs ne sont pas distribuées selon une loi normale.
+
+\begin{center}
+\includegraphics[trim = 3cm 9cm 3cm 9cm, clip]{qqplot.pdf}
+\captionof{figure}{Courbe quantile-quantile (counting game)}
+\label{fig3.5}
 \end{center}
 
 \begin{multicols}{2}
@@ -345,7 +366,7 @@ Nous allons maintenant vérifier si le coefficient $\gamma$ devant l'opinion ini
 
 \begin{center}
 \includegraphics[trim = 3cm 9cm 3cm 9cm, clip]{bootstrap.pdf}
-\captionof{figure}{Répartition des différentes valeurs de $\gamma$}
+\captionof{figure}{Répartition des différentes valeurs de $\gamma$ (counting game)}
 \label{fig4}
 \end{center}
 
@@ -370,9 +391,11 @@ Counting game & 0.09 & 0.15 \tabularnewline
 
 Nous avons donc confronté les deux modèles d'évolution de l'opinion d'un individu. Nous avons remarqué l'absence de l'influence de l'opinion initiale dans le modèle proposé par Vande Kerckhove et al. \cite{VMG}. Nous avons donc pu utiliser les données obtenues par Vande Kerckhove et al. \cite{VMG} afin de vérifier le modèle de Friedkin et Johnson \cite{FJ}.\\
 
-Nous avons tenté de valider ce modèle à l'aide d'une régression linéaire multiple pour laquelle nous avons étudié les écarts entre les valeurs théoriques et les valeurs réelles de sorte à savoir si l'on pouvait conclure à l'homoscédasticité du modèle. Nous avons ensuite essayé de déterminer la non-nullité du coefficient devant l'opinion initiale.\\
+Nous avons tenté de valider ce modèle à l'aide d'une régression linéaire multiple pour laquelle nous avons étudié les écarts entre les valeurs théoriques et les valeurs réelles de sorte à savoir s'il était possible d'utiliser les formules théoriques de validation. Comme ce n'était pas le cas, nous avons utilisé une méthode de validation empirique pour déterminer la non-nullité du coefficient devant l'opinion initiale.\\
 
-Les tests menés dans le cadre de cette expérience ne nous permettent pas d'être assurés de l'homoscédasticité du modèle. En revanche, sous réserve que cette hypothèse soit tout de même correcte, nous avons conclu la non-nullité du poids de l'opinion initiale dans la prise de décision finale. \\
+Suite au bootstrap, nous avons conclu la non-nullité du poids de l'opinion initiale dans la prise de décision finale. Le premier avis à donc une importance lors de la prise de décision d'un individu. \\
+
+Cependant, une des limites de ce modèle est qu'il ne s'applique que dans le cadre de questions objectives, et qu'il n'est donc pas applicable directement aux situations réelles évoquées au début. Une amélioration possible à donner à ce projet est de tester ce modèle sur des questions plus proches de situations réelles, comme celles de l'expérience de Friedkin et Johnson \cite{FJ}.\\
 
 
 \end{multicols}
