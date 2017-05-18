@@ -57,7 +57,7 @@ L’évolution des dynamiques d’opinions est un sujet particulièrement import
 
 Ainsi, il semble crucial de parvenir à prédire l’évolution des opinions à l’aide de modèles mathématiques, par exemple dans des buts lucratifs (anticiper les phénomènes de mode, etc.), ou électoraux (connaître le moment propice pour faire une annonce, etc.).\\
 
-Ce projet a pour but d’étudier deux modèles d’évolution des dynamiques d’opinion, et de chercher à valider l’un des deux à l’aide des données issues de l’expérience de l’autre. \\
+Ce projet a pour but d’étudier deux modèles d’évolution des dynamiques d’opinion, et de chercher à valider le premier à l’aide des données issues de l’expérience du second. \\
 
 Cependant, il faut garder à l’esprit que les expériences étudiées correspondent à des questions objectives qui sont différentes du contexte réel.\\
 
@@ -68,7 +68,7 @@ Cependant, il faut garder à l’esprit que les expériences étudiées correspo
 
 Les deux articles que nous allons étudier sont “Social influence networks and opinion change”, écrit par Noah E. Friedkin et Eugene C. Johnson \cite{FJ} et “Modelling influence and opinion evolution in online collective behaviour”, de Corentin Vande Kerckhove, Samuel Martin, Pascal Gend, Peter J. Rentfrow, Julien M. Hendrickx et Vincent D. Blondel \cite{VMG}.\\
 
-L’article \cite{FJ} de Friedkin et Johnson porte sur les dynamiques d’opinion. C’est-à-dire la façon dont des individus peuvent modifier leurs opinions lorsqu’ils sont confrontés à un groupe de personne. Plus précisément, il s’interroge sur la possibilité de parvenir à un consensus entre les acteurs. Le document a été écrit en 1999. De nombreuses études avaient déjà été menées depuis 1950, notamment par John French, dont on peut citer l'article ``A formal theory of social power'' \cite{French} de 1956 ou encore Ash, à qui l'on doit "Effects of group pressure upon the modification and distortion of judgments" \cite{Asch}.\\
+L’article \cite{FJ} de Friedkin et Johnson porte sur les dynamiques d’opinion. C’est-à-dire la façon dont des individus peuvent modifier leurs opinions lorsqu’ils sont confrontés à un groupe de personne. Plus précisément, il s’interroge sur la possibilité de parvenir à un consensus entre les acteurs. Le document a été écrit en 1999. De nombreuses études avaient déjà été menées depuis 1950, notamment par Solomon E. Asch, à qui l'on doit "Effects of group pressure upon the modification and distortion of judgments" \cite{Asch} en 1951, ou encore John French, dont on peut citer l'article ``A formal theory of social power'' \cite{French} de 1956.\\
 
 Le second article \cite{VMG}, plus récent, date de 2016. Il reprend le thème des dynamiques d’opinion mais avec une théorie différente de la précédente. L'article évalue la capacité d'un modèle simple à prédire l'évolution de l'opinion.
 
@@ -127,16 +127,16 @@ Coefficient devant l'opinion du groupe à l'instant précédent & $A^{2}C$ & $A'
 \end{table}
 
 
-\section{Expériences et méthode mises en oeuvre}
+\section{Expériences et méthodes mises en oeuvre}
 
 
 \subsection{Description de l'expérience}
 
 Les deux articles étudiés présentent chacun une expérience cherchant à montrer la validité de leur modèle.\\
 
-Dans l’article de Friedkin et Johnson \cite{FJ}, l’expérience consistait à former des groupes de deux à quatre personnes. Un total de 368 personnes ont participé. Une question était posée à chaque groupe, par exemple : \textit{ ``À combien estimez-vous le salaire horaire des travailleurs non-diplômés  travaillant sur un site de désamiantage ?''}. Les individus donnaient chacun un résultat. S’ensuivait une conversation téléphonique avec d’autres participants. Ils pouvaient alors donner une nouvelle réponse. L’opération se répétait jusqu’à ce que la situation n’évolue plus et tous les résultats intermédiaires sont conservés. Il est ensuite demandé aux différents participants d’estimer à quel point ils pensent avoir été influencés par les autres. Pour ce faire, ils devaient répartir une pile de jetons de poker.\\
+Dans l’article de Friedkin et Johnson \cite{FJ}, l’expérience consistait à former des groupes de deux à quatre personnes. Un total de 368 personnes ont participé. Une question était posée à chaque groupe, par exemple : \textit{ ``À combien estimez-vous le salaire horaire des travailleurs non-diplômés  travaillant sur un site de désamiantage ?''}. Les individus donnaient chacun un résultat. S’ensuivait une conversation téléphonique avec d’autres participants. Ils pouvaient alors donner une nouvelle réponse. L’opération se répétait jusqu’à ce que la situation n’évolue plus et tous les résultats intermédiaires étaient conservés. Il est ensuite demandé aux différents participants d’estimer à quel point ils pensent avoir été influencés par les autres. Pour ce faire, ils devaient répartir une pile de jetons de poker.\\
 
-Dans le cas de l’article \cite{VMG}, une plateforme de crowdsourcing a été utilisée afin de recruter 861 sujets. Un groupe était formé de six personnes ou moins. Deux jeux leurs étaient proposés. Le premier consistait à évaluer le nombre de points dans une image. Le second à évaluer la proportion d'une couleur dans une image. Le jeu était divisé en trois phases. Par exemple, pour le premier jeu, lors de la première phase, l'individu devait évaluer, seul, le nombre de points présents sur chacune des 30 images. Lors de la seconde phase, il avait accès aux estimations des cinq autres participants, et pouvait modifier ses réponses en conséquence. La troisième phase correspond à une répétition de la deuxième phase. Les estimations alors présentées sont celles de la deuxième phase. \\
+Dans le cas de l’article \cite{VMG}, une plateforme de crowdsourcing a été utilisée afin de recruter 861 sujets. Un groupe était formé de six personnes ou moins. Deux jeux leurs étaient proposés. Le premier consistait à estimer le nombre de points dans une image. Le second, à évaluer la proportion d'une couleur dans une image. Le jeu était divisé en trois phases. Par exemple, pour le premier jeu, lors de la première phase, l'individu devait évaluer, seul, le nombre de points présents sur chacune des 30 images. Lors de la seconde phase, il avait accès aux estimations des cinq autres participants, et pouvait modifier ses réponses en conséquence. La troisième phase correspond à une répétition de la deuxième phase. Les estimations alors présentées sont celles de la deuxième phase. \\
 
 Bien que ces expériences présentent des similitudes, elles possèdent des différences notables résumées dans la Table 2.2.\\
 
