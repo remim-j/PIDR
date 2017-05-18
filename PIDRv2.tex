@@ -49,7 +49,7 @@
 
 \tableofcontents
 \newpage
-\begin{multicols}{2}
+ 
 
 \chapter{Introduction}
 
@@ -109,7 +109,7 @@ En identifiant avec la formule \eqref{1}, on remarque que $W=(\frac{1}{n} \textb
 
 Nous pouvons alors dresser un comparatif des deux modèles dans la Table 1.1.\\
 
-\end{multicols}
+  
 
 \begin{table}
 	\begin{tabular}{|p{3cm}|p{3.375cm}|p{3.375cm}|p{3.375cm}|}
@@ -126,7 +126,6 @@ Coefficient devant l'opinion du groupe à l'instant précédent & $A^{2}C$ & $A'
 	\caption{Comparaison des 2 modèles}
 \end{table}
 
-\begin{multicols}{2}
 
 \section{Expériences et méthode mises en oeuvre}
 
@@ -141,7 +140,7 @@ Dans le cas de l’article \cite{VMG}, une plateforme de crowdsourcing a été u
 
 Bien que ces expériences présentent des similitudes, elles possèdent des différences notables résumées dans la Table 1.2.\\
 
-\end{multicols}
+  
 
 \begin{table}
 	\begin{tabular}{|p{4cm}|p{4.5cm}|p{4.5cm}|}
@@ -160,7 +159,7 @@ Topologie des interactions & Plusieurs type de topologie, complètes ou non. & G
 	\caption{Comparaison des 2 expériences}
 \end{table}
 
-\begin{multicols}{2}
+ 
 
 On voit ici qu'une des différences entre les deux protocoles est la nature des interactions entre les participants. En effet, il n’y a pas de “bonne” réponse aux questions posées dans l'expérience de Friedkin et Johnson, et les participants sont en contact vocal, ce qui peut provoquer, par exemple, l’émergence de leaders qui vont imposer leurs choix aux autres. L’absence de contact direct entre les participants, ainsi que l’existence d’une réponse correcte à atteindre dans l'article \cite{VMG} limite ce phénomène.\\
 
@@ -291,8 +290,6 @@ Nous pouvons ensuite déterminer la $p$-valeur afin de vérifier la validité de
 
 Nous avons effectué la régression linéaire présentée dans \eqref{23} avec les  séries de données à notre disposition, à savoir "counting game" et "gauging game". Les valeurs obtenues pour les coefficients sont résumées dans la table 3.1. Bien que le poids induit par $\gamma$ soit plus faible que celui de $\alpha$ et $\beta$, il ne nous est pas encore possible de dire si celui-ci est significatif. \\
 
-\end{multicols}
-
 \begin{table}
 	\begin{tabular}{|p{4cm}|p{4.5cm}|p{4.5cm}|}
 		\hline
@@ -310,11 +307,11 @@ $e$ &  0.49 & 0.85 \tabularnewline
 	\caption{Coefficients de la régression linéaire multiple}
 \end{table}
 
-\begin{multicols}{2}
+ 
 
 Nous avons également représenté la valeur réelle de $y_{reel}(3)$ en fonction de la valeur $y_{predit}(3)$ obtenu avec ces coefficients dans le cas du counting game. Nous pouvons voir sur la Figure \ref{fig1} l'apparition de lignes. En effet, les personnes interrogées lors de l'expérience préféraient donner des valeurs multiples de 50 ou de 10. Un phénomène similaire se produit si nous utilisons le second jeu de données.\\
 
-\end{multicols}
+  
 
 \begin{center}
 \includegraphics[trim = 3cm 9cm 3cm 9cm, clip]{yreelypredit.pdf}
@@ -322,13 +319,13 @@ Nous avons également représenté la valeur réelle de $y_{reel}(3)$ en fonctio
 \label{fig1}
 \end{center}
 
-\begin{multicols}{2}
+ 
 
 \section{Etude des erreurs}
 
 Intéressons-nous maintenant aux erreurs. Plaçons-nous dans un premier temps dans le cadre du counting game. Nous avons représenté l'écart entre $y_{reel}(3)$ et $y_{predit}(3)$ en fonction de $ y_{reel}(3)$, ce qui nous donne la figure \ref{fig2}. Celle-ci montre l'indépendance entre les résidus et les valeurs de $y_{reel}$.\\
 
-\end{multicols}
+  
 
 \begin{center}
 \includegraphics[trim = 3cm 9cm 3cm 9cm, clip]{residu.pdf}
@@ -336,11 +333,11 @@ Intéressons-nous maintenant aux erreurs. Plaçons-nous dans un premier temps da
 \label{fig2}
 \end{center}
 
-\begin{multicols}{2}
+ 
 
 La figure \ref{fig3} présente l'écart-type et la moyenne glissante de ces erreurs sur une fenêtre de 25 valeurs. Nous pouvons constater que l'écart type est constant tant que les valeurs de $y_{reel}(3)$ ne sont ni trop faibles (inférieures à 50), ni trop élevées (supérieures à 450). Il ne nous est donc pas complètement possible de valider l'homocédasticité des erreurs. Ceci peut venir du manque de résultats dans les intervalles [0; 50] et [450; 500]. Il faut aussi prendre en compte que les résultats de l'expérience étaient bornés. Nous obtenons des résultats similaires en utilisant la seconde série de données (gauging game).\\
 
-\end{multicols}
+  
 
 \begin{center}
 \includegraphics[trim = 3cm 9cm 3cm 9cm, clip]{residuMoyen.pdf}
@@ -356,13 +353,13 @@ Nous avons également tracé une courbe quantile-quantile (Figure \ref{fig3.5}) 
 \label{fig3.5}
 \end{center}
 
-\begin{multicols}{2}
+ 
 
 \section{Bootstrap}
 
 Nous allons maintenant vérifier si le coefficient $\gamma$ devant l'opinion initiale est significatif. Pour cela, suite au bootstrap, nous avons obtenu l'histogramme présent en figure \ref{fig4} (obtenu avec la série de données issues du counting game). Il nous est alors possible d'encadrer à 95\% la valeur de $\gamma$. Ces valeurs sont résumées dans la table 3.2. Ainsi, on peut affirmer, à $95\%$, que $\gamma$ est non nul. L'opinion initiale joue donc bien un rôle dans la décision finale.
 
-\end{multicols}
+  
 
 \begin{center}
 \includegraphics[trim = 3cm 9cm 3cm 9cm, clip]{bootstrap.pdf}
@@ -385,7 +382,7 @@ Counting game & 0.09 & 0.15 \tabularnewline
 
 \newpage
 
-\begin{multicols}{2}
+ 
 
 \chapter{Conclusion}
 
@@ -398,7 +395,7 @@ Suite au bootstrap, nous avons conclu la non-nullité du poids de l'opinion init
 Cependant, une des limites de ce modèle est qu'il ne s'applique que dans le cadre de questions objectives, et qu'il n'est donc pas applicable directement aux situations réelles évoquées au début. Une amélioration possible à donner à ce projet est de tester ce modèle sur des questions plus proches de situations réelles, comme celles de l'expérience de Friedkin et Johnson \cite{FJ}.\\
 
 
-\end{multicols}
+  
 
 \bibliographystyle{plain}
 \bibliography{references}
