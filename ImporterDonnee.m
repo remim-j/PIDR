@@ -1,7 +1,7 @@
 % Import des fichiers
 Rp = csvread('data_pidr_2017/Xpers_gauging_game_plos_one.csv');
 Mo = csvread('data_pidr_2017/Xmean_gauging_game_plos_one.csv');
-max = 100;
+max = 100;  //valeur max des r√©sultats, √† changer par 500 dans le cas de counting game
 [x, y] = size(Rp);
 
 %Initialisation de M
@@ -21,7 +21,7 @@ alpha = 0.05;
 
 [b,bint,r,rint,stats] = regress(y,X);
 
-disp('OdonnÈe_‡_origine, yi(1), yi(2), myi(2)');
+disp('Odonn√©e_√†_origine, yi(1), yi(2), myi(2)');
 b'
 disp('r_stat, f_stat, p valeur de f_stat, estimation erreur variance');
 stats(4)
@@ -49,7 +49,7 @@ plot(yreel, (yreel-ypredit), '.')
 xlabel('y reel');
 ylabel('erreur');
 
-%% erreur moyenne/Ècart type
+%% erreur moyenne/√©cart type
 
 erreur = yreel-ypredit;
 merreur = zeros(20,1);
@@ -104,7 +104,7 @@ histogram(bboot)
 binf = val(floor(length(bboot)*0.025));
 bsup = val(floor(length(bboot)*0.975));
 
-disp('Interval de confience ‡ 95%')
+disp('Interval de confience √† 95%')
 binf
 bsup
 
