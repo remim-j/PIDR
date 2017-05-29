@@ -1,7 +1,7 @@
 % Import des fichiers
 Rp = csvread('data_pidr_2017/Xpers_gauging_game_plos_one.csv');
 Mo = csvread('data_pidr_2017/Xmean_gauging_game_plos_one.csv');
-max = 100;  //valeur max des résultats, à changer par 500 dans le cas de counting game
+max = 100;  %valeur max des résultats, à changer par 500 dans le cas de counting game
 [x, y] = size(Rp);
 
 %Initialisation de M
